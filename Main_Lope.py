@@ -1,7 +1,8 @@
-# 라이브러리, 메소드 불러오기
+# 라이브러리, 클래스 불러오기
 import pygame
 from Game_Sources import*
 from Game_Stages import*
+from Game_Fishs import*
 
 # 파이게임 초기화
 pygame.init()
@@ -28,14 +29,16 @@ while running:
             stage = 1
 
     if stage == 1: # 게임이 진행되는 스테이지 값: 1
-        Map.backgroundscreen()
+        last_fish_spawn_time = 0
+        Map.backgroundscreen(last_fish_spawn_time, fishs)
+        last_fish_spawn_time = time.time()
         if pygame.mouse.get_pressed()[0] and fish_book_button_rect.collidepoint(pygame.mouse.get_pos()):
             stage = 999
 
     if stage == 999: # 도감 화면 스테이지 값: 2
         Map.fishbookscreen()
         if pygame.mouse.get_pressed()[0] and return_button_rect.collidepoint(pygame.mouse.get_pos()):
-            stage = 1
+            stage = 1   
         
     pygame.display.update() # 루프 내에서 발생한 모든 이미지 변화를 업데이트
     print(stage)
