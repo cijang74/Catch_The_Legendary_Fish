@@ -19,6 +19,7 @@ while running:
     if stage == 0: # 메인탭 스테이지 값: 0
         Map.homescreen()
         if pygame.mouse.get_pressed()[0] and start_button_rect.collidepoint(pygame.mouse.get_pos()):
+            start_time = time.time()
             stage += 1
         elif pygame.mouse.get_pressed()[0] and game_description_button_rect.collidepoint(pygame.mouse.get_pos()):
             stage -= 1
@@ -26,22 +27,21 @@ while running:
     if stage == -1: # 설명탭 스테이지 값: -1
         Map.descriptionscreen()
         if pygame.mouse.get_pressed()[0] and start_button_rect.collidepoint(pygame.mouse.get_pos()):
+            start_time = time.time()
             stage = 1
 
     if stage == 1: # 게임이 진행되는 스테이지 값: 1
-        last_fish_spawn_time = 0
-        Map.backgroundscreen(last_fish_spawn_time, fishs)
-        last_fish_spawn_time = time.time()
+        Map.backgroundscreen(fishs,start_time)
         if pygame.mouse.get_pressed()[0] and fish_book_button_rect.collidepoint(pygame.mouse.get_pos()):
             stage = 999
-
+            
     if stage == 999: # 도감 화면 스테이지 값: 2
         Map.fishbookscreen()
         if pygame.mouse.get_pressed()[0] and return_button_rect.collidepoint(pygame.mouse.get_pos()):
             stage = 1   
         
     pygame.display.update() # 루프 내에서 발생한 모든 이미지 변화를 업데이트
-    print(stage)
+    print(pause)
 
 # pygame 종료
 pygame.quit()

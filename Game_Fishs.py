@@ -1,14 +1,20 @@
+# 라이브러리, 클래스 불러오기
 import pygame, random
 from Game_Sources import*
 
 class Fishs:
     def __init__(self):
-        self.x = 0
-        self.y =  random.randint(50, 1030)
-        self.rr = random.randint(1,2)
+        self.x = -200
+        self.y =  random.randint(150, 600)
+        self.rr = random.randint(1,2) # 물고기의 종류를 선택
 
-    def move(self):
-        self.x += 2 # 물고기의 움직임
+    def move(self): # 물고기의 움직임
+        if pause == False:
+            if self.rr == 1:
+                self.x += 1 # 만약에 고등어면 보통으로 움직임
+
+            if self.rr == 2:
+                self.x += 3 # 만약에 은갈치면 존내 빠르게 움직임
              
     def draw(self):
         if self.rr == 1:
@@ -17,8 +23,25 @@ class Fishs:
             screen.blit(fish_silverfish_image, (self.x, self.y)) # 그리기
 
     def off_screen(self):
-        return (self.x > 1800) # 화면을 넘어갔을 때
+        return (self.x > 1800) # 화면을 넘어갔을 때 물고기 없앰
+
+    def make_fish(self):
+        i = 0
+        while i < len(fishs): #i가 현재 물고기의 개체수 보다 작을 때 동안 반복
+            if pause == False:
+                fishs[i].move()# 움직임
+            fishs[i].draw()# 그리기
+            
+            if fishs[i].off_screen(): #만약에 화면을 넘어가면
+                del fishs[i] # 물고기 삭제
+                i -= 1 # 삭제되면 i를 1 감소시킴으로서 또 다른 배드가이 생성
+
+            #elif fishs[i].touching(character):##추가
+                #character.hp -= 1##추가
+                #del fishs[i]##추가
+                #i -= 1##추가
+            i += 1
 
     #def touching(self, missile):
-        self.space_trach_rect = pygame.Rect(self.x, self.y, 80, 80) ##추가
-        return self.space_trach_rect.colliderect(missile.character_rect)##추가
+        #self.space_trach_rect = pygame.Rect(self.x, self.y, 80, 80) ##추가
+        #return self.space_trach_rect.colliderect(missile.character_rect)##추가

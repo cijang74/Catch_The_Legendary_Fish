@@ -23,6 +23,14 @@ class Button: # 버튼 클래스
             game_description_button_rect.left = x
             game_description_button_rect.top = y
 
+        elif type == 'pause':
+            pause_button_rect.left = x
+            pause_button_rect.top = y
+
+        elif type == 'countinue':
+            countinue_button_rect.left = x
+            countinue_button_rect.top = y
+
         screen.blit(img_in,(x,y))
 
 class Stages: # 스테이지 클래스
@@ -43,15 +51,29 @@ class Stages: # 스테이지 클래스
         screen.blit(fish_book_image, (self.x, self.y))
         Button(return_button_image,0,574,'return')
 
-    def backgroundscreen(self, last_fish_spawn_time, fishs): # 게임 진행 배경
+    def backgroundscreen(self, fishs, start_time): # 게임 진행 배경
+        global last_fish_spawn_time
+        global pause
+
+        while (time.time() - start_time <= 10):
+                if time.time() - start_time <= 5 and time.time() - start_time >= 0:
+                    screen.blit(game_intro_1_image, (self.x,self.y))
+
+                if time.time() - start_time <= 10 and time.time() - start_time >= 5:
+                    screen.blit(game_intro_2_image, (self.x, self.y))
+
+                pygame.display.update()
+        
         screen.blit(game_background_image, (self.x, self.y))
-        spawn = True
-        if time.time() - last_fish_spawn_time > 0.5 and spawn == True: # 물고기들 스폰
+
+        if time.time() - last_fish_spawn_time > 0.5 and pause == False: # 물고기들 스폰
                 fishs.append(Fishs())
+                last_fish_spawn_time = time.time()
 
         i = 0
         while i < len(fishs): #i가 현재 물고기의 개체수 보다 작을 때 동안 반복
-            fishs[i].move()# 움직임
+            if pause == False:
+                fishs[i].move()# 움직임
             fishs[i].draw()# 그리기
             
             if fishs[i].off_screen(): #만약에 화면을 넘어가면
@@ -63,5 +85,16 @@ class Stages: # 스테이지 클래스
                 #del fishs[i]##추가
                 #i -= 1##추가
             i += 1
+            
+        if pygame.mouse.get_pressed()[0] and pause_button_rect.collidepoint(pygame.mouse.get_pos()):
+            pause = True
+
+        if pause == True:
+            screen.blit(pause_screen_image, (280, 130))
+            Button(countinue_button_image,580,320,'countinue')
+            if pygame.mouse.get_pressed()[0] and countinue_button_rect.collidepoint(pygame.mouse.get_pos()):
+                pause = False
+            
         
         Button(fish_book_button_image,967,0,'book')
+        Button(pause_button_image,831,0,'pause')
