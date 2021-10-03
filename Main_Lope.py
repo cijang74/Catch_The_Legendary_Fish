@@ -39,7 +39,7 @@ while running:
         Map.fishbookscreen()
         if pygame.mouse.get_pressed()[0] and return_button_rect.collidepoint(pygame.mouse.get_pos()):
             stage = 1   
-        
+
     pygame.display.update() # 루프 내에서 발생한 모든 이미지 변화를 업데이트
     print(pause)
 

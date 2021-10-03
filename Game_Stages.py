@@ -85,16 +85,22 @@ class Stages: # 스테이지 클래스
                 #del fishs[i]##추가
                 #i -= 1##추가
             i += 1
+
+        Button(fish_book_button_image,967,0,'book')
+        Button(pause_button_image,831,0,'pause')
             
         if pygame.mouse.get_pressed()[0] and pause_button_rect.collidepoint(pygame.mouse.get_pos()):
             pause = True
 
         if pause == True:
+            #일시정지 하면 뒤에 배경 불투명한 검정색 칠하기#
+            pause_screen_color = screen.convert_alpha()
+            pause_screen_color.fill((0, 0, 0, 0))                    # t_surface 전체를 투명한 검정색으로 지운다
+            
+            pygame.draw.rect(pause_screen_color, (0, 0, 0, 150), (0, 0, 1280, 720))  # t_surface에 투명도를 적용하여 그려줌, (surface, color, Rect(x,y,w,h), Width = 0)
+            screen.blit(pause_screen_color, (0, 0))                  # t_surface를 기본 Surface에 blit
+            #############################################
             screen.blit(pause_screen_image, (280, 130))
             Button(countinue_button_image,580,320,'countinue')
             if pygame.mouse.get_pressed()[0] and countinue_button_rect.collidepoint(pygame.mouse.get_pos()):
                 pause = False
-            
-        
-        Button(fish_book_button_image,967,0,'book')
-        Button(pause_button_image,831,0,'pause')
