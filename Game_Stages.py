@@ -19,7 +19,7 @@ class Button: # 버튼 클래스
             return_button_rect.left = x
             return_button_rect.top = y
 
-        elif type == 'description':
+        elif type == 'description': 
             game_description_button_rect.left = x
             game_description_button_rect.top = y
 
@@ -30,6 +30,10 @@ class Button: # 버튼 클래스
         elif type == 'countinue':
             countinue_button_rect.left = x
             countinue_button_rect.top = y
+
+        elif type == 'end':
+            game_end_button_rect.left = x
+            game_end_button_rect.top = y
 
         screen.blit(img_in,(x,y))
 
@@ -55,14 +59,14 @@ class Stages: # 스테이지 클래스
         global last_fish_spawn_time
         global pause
 
-        while (time.time() - start_time <= 10):
-                if time.time() - start_time <= 5 and time.time() - start_time >= 0:
-                    screen.blit(game_intro_1_image, (self.x,self.y))
+        # while (time.time() - start_time <= 10): # 인트로 띄워주기
+        #         if time.time() - start_time <= 5 and time.time() - start_time >= 0:
+        #             screen.blit(game_intro_1_image, (self.x,self.y))
 
-                if time.time() - start_time <= 10 and time.time() - start_time >= 5:
-                    screen.blit(game_intro_2_image, (self.x, self.y))
+        #         if time.time() - start_time <= 10 and time.time() - start_time >= 5:
+        #             screen.blit(game_intro_2_image, (self.x, self.y))
 
-                pygame.display.update()
+        #         pygame.display.update()
         
         screen.blit(game_background_image, (self.x, self.y))
 
@@ -86,8 +90,8 @@ class Stages: # 스테이지 클래스
                 #i -= 1##추가
             i += 1
 
-        Button(fish_book_button_image,967,0,'book')
-        Button(pause_button_image,831,0,'pause')
+        Button(fish_book_button_image,1061,0,'book')
+        Button(pause_button_image,1190,0,'pause')
             
         if pygame.mouse.get_pressed()[0] and pause_button_rect.collidepoint(pygame.mouse.get_pos()):
             pause = True
@@ -100,7 +104,10 @@ class Stages: # 스테이지 클래스
             pygame.draw.rect(pause_screen_color, (0, 0, 0, 150), (0, 0, 1280, 720))  # t_surface에 투명도를 적용하여 그려줌, (surface, color, Rect(x,y,w,h), Width = 0)
             screen.blit(pause_screen_color, (0, 0))                  # t_surface를 기본 Surface에 blit
             #############################################
-            screen.blit(pause_screen_image, (280, 130))
-            Button(countinue_button_image,580,320,'countinue')
+            screen.blit(pause_screen_image, (0, 0))
+            Button(countinue_button_image,520,270,'countinue')
+
             if pygame.mouse.get_pressed()[0] and countinue_button_rect.collidepoint(pygame.mouse.get_pos()):
                 pause = False
+            
+            Button(game_end_button_image,520,373,'end')

@@ -34,6 +34,9 @@ while running:
         Map.backgroundscreen(fishs,start_time)
         if pygame.mouse.get_pressed()[0] and fish_book_button_rect.collidepoint(pygame.mouse.get_pos()):
             stage = 999
+
+        if pygame.mouse.get_pressed()[0] and game_end_button_rect.collidepoint(pygame.mouse.get_pos()):
+            running = False # 이것도 논의. 종료 누르면 타이틀로 가게 할 건지? 아니면 바로 게임을 종료시킬 것인지.
             
     if stage == 999: # 도감 화면 스테이지 값: 2
         Map.fishbookscreen()
@@ -41,7 +44,7 @@ while running:
             stage = 1   
 
     pygame.display.update() # 루프 내에서 발생한 모든 이미지 변화를 업데이트
-    print(pause)
+    print(running)
 
 # pygame 종료
 pygame.quit()

@@ -22,6 +22,7 @@ fish_book_image = pygame.image.load("images/Fish_Book_Screen.png").convert() # �
 game_intro_1_image = pygame.image.load("images/Intro_1.png").convert() # 인트로 1 이미지
 game_intro_2_image = pygame.image.load("images/Intro_2.png").convert() # 인트로 2 이미지
 pause_screen_image = pygame.image.load("images/Pause_Screen.png").convert() # 일시정지 했을 때 뜨는 작은 화면
+pause_screen_image.set_colorkey((255, 255, 255)) #이거 논의 해봐야함 (눈의 흰색 하이라이트가 흰색 컬러키에 걸러지므로 바탕색을 검은색으로 하는게 좋아보임.)
 
 start_button_image = pygame.image.load("images/Start_Button.png").convert() # 게임 시작 버튼 이미지
 start_button_rect = start_button_image.get_rect() # 게임 시작 버튼의 렉트값
@@ -40,6 +41,9 @@ pause_button_rect = pause_button_image.get_rect() # 일시정지 버튼의 렉�
 
 countinue_button_image = pygame.image.load("images/Countinue_Button.png").convert() # 계속하기 버튼 이미지
 countinue_button_rect = countinue_button_image.get_rect() # 계속하기 버튼의 렉트값
+
+game_end_button_image = pygame.image.load("images/Game_End_Button.png").convert() # 게임 종료 버튼 이미지
+game_end_button_rect = game_end_button_image.get_rect() # 게임 종료 버튼의 렉트값
 
 ### 물고기들 이미지 ###
 fish_mackerel_image = pygame.image.load("images/Fish_Mackerel.png").convert() # 고등어 이미지

@@ -9,7 +9,6 @@ class Fishs:
         self.rr = random.randint(1,2) # 물고기의 종류를 선택
 
     def move(self): # 물고기의 움직임
-        if pause == False:
             if self.rr == 1:
                 self.x += 1 # 만약에 고등어면 보통으로 움직임
 
@@ -28,8 +27,7 @@ class Fishs:
     def make_fish(self):
         i = 0
         while i < len(fishs): #i가 현재 물고기의 개체수 보다 작을 때 동안 반복
-            if pause == False:
-                fishs[i].move()# 움직임
+            fishs[i].move()# 움직임
             fishs[i].draw()# 그리기
             
             if fishs[i].off_screen(): #만약에 화면을 넘어가면
