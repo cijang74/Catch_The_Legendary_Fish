@@ -55,24 +55,24 @@ class Fishs:
 
     def touching(self): # 플레이어의 낚시 바늘 제어 / 낚시 바늘과 물고기의 충돌 여부
         # 다 올렸을 때
-        if boy.hook_y < boy.boy_y + boy.boy_height :
+        if boy.hook_y == boy.boy_y + 150 :
             if self.isCatched :
                 self.isCatched = 0
-                pygame.time.delay(500)
-            boy.hook_y = boy.boy_y + boy.boy_height
+                # pygame.time.delay(500)
+            boy.hook_y = boy.boy_y + 150
             boy.hook_dy = 0
             self.isHookUp = 1
         
         # 낚시바늘 올리기
-        elif boy.hook_y > screen_height - boy.hook_height - 50 or self.isCatched :
+        elif boy.hook_y > screen_height - 30 or self.isCatched :
             self.isHookDown = 0
             if boy.hook_dy >= 0 :
                 boy.hook_dy -= boy.hook_speed
 
         # 낚시바늘-물고기 충돌 체크
         if hook_rect.colliderect(fish_mackerel_rect or fish_silverfish_rect) :
-            self.x = boy.hook_x + boy.hook_width / 2 - boy.hook_width / 2
-            self.y = boy.hook_y + boy.hook_height / 2 - boy.hook_height / 2
+            # self.x = boy.hook_x + boy.hook_width / 2 - boy.hook_width / 2
+            # self.y = boy.hook_y + boy.hook_height / 2 - boy.hook_height / 2
             self.isCatched = 1
 
     #def touching(self, missile):

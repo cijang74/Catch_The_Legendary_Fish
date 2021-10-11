@@ -55,9 +55,11 @@ class Stages: # 스테이지 클래스
         screen.blit(fish_book_image, (self.x, self.y))
         Button(return_button_image,0,574,'return')
 
-    def backgroundscreen(self, fishs, start_time): # 게임 진행 배경
+    def backgroundscreen(self, fishs, start_time, pressed_keys): # 게임 진행 배경
         global last_fish_spawn_time
         global pause
+
+
 
         # while (time.time() - start_time <= 10): # 인트로 띄워주기
         #         if time.time() - start_time <= 5 and time.time() - start_time >= 0:
@@ -69,6 +71,9 @@ class Stages: # 스테이지 클래스
         #         pygame.display.update()
         
         screen.blit(game_background_image, (self.x, self.y))
+
+        boy.move(pressed_keys)
+        boy.draw()
 
         if time.time() - last_fish_spawn_time > 0.5 and pause == False: # 물고기들 스폰
                 fishs.append(Fishs())
@@ -84,14 +89,13 @@ class Stages: # 스테이지 클래스
                 del fishs[i] # 물고기 삭제
                 i -= 1 # 삭제되면 i를 1 감소시킴으로서 또 다른 배드가이 생성
 
+            fishs[i].touching()
+
             #elif fishs[i].touching(character):##추가
                 #character.hp -= 1##추가
                 #del fishs[i]##추가
                 #i -= 1##추가
             i += 1
-
-        boy.move()
-        boy.draw()
 
         Button(fish_book_button_image,1061,0,'book')
         Button(pause_button_image,1190,0,'pause')

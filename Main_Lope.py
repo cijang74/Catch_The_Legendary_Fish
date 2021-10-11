@@ -12,6 +12,8 @@ Map = Stages()
 running = True # running이 참일때 게임은 실행중
 
 while running:
+    pressed_keys = pygame.key.get_pressed()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # 창이 닫히는 이벤트가 발생하였는가?
             running = False
@@ -31,7 +33,7 @@ while running:
             stage = 1
 
     if stage == 1: # 게임이 진행되는 스테이지 값: 1
-        Map.backgroundscreen(fishs,start_time)
+        Map.backgroundscreen(fishs,start_time,pressed_keys)
         if pygame.mouse.get_pressed()[0] and fish_book_button_rect.collidepoint(pygame.mouse.get_pos()):
             stage = 999
 

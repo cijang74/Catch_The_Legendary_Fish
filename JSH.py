@@ -82,14 +82,17 @@ while isRunning :
     boy_x_pos += boy_x_change * dt  # dt: 프레임 변화에 따른 이동 속도 변화 보정
     hook_x_pos = boy_x_pos + boy_width - hook_width
     hook_y_pos += hook_y_change * dt
+
     # 가로 경계값 처리 - 주인공
     if boy_x_pos < 0 :
         boy_x_pos = 0
         hook_x_pos = boy_x_pos + boy_width - hook_width
+
     elif boy_x_pos > screen_width - boy_width :
         boy_x_pos = screen_width - boy_width
         hook_x_pos = boy_x_pos + boy_width - hook_width
     # 세로 경계값 처리 - 낚시바늘
+    
     # 다 올렸을 때
     if hook_y_pos < boy_y_pos + boy_height :
         if isCatched :
@@ -101,6 +104,7 @@ while isRunning :
         fish_x_pos = screen_width / 2 - fish_width / 2
         fish_y_pos = screen_height * (3/4) - fish_height / 2
         #fish_y_pos = screen_height / 2 - fish_height / 2
+
     # 낚시바늘 올리기
     elif hook_y_pos > screen_height - hook_height - 50 or isCatched :
         isHookDown = 0
@@ -112,6 +116,7 @@ while isRunning :
     hook_rect = hook.get_rect()
     hook_rect.left = hook_x_pos
     hook_rect.top = hook_y_pos
+    
     # 물고기 rect 정보
     fish_rect = fish.get_rect()
     fish_rect.left = fish_x_pos
