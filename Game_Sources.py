@@ -47,7 +47,7 @@ game_end_button_rect = game_end_button_image.get_rect() # 게임 종료 버튼�
 
 ### 플레이어(소년) 관련 이미지 ###
 boy_image = pygame.image.load("images/Character.png")
-boy_image = pygame.transform.scale(boy_image, (140, 140)) # 이미지 스케일 변환
+boy_image = pygame.transform.scale(boy_image, (158, 148)) # 이미지 스케일 변환
 
 ### 낚시바늘 ###
 hook_image = pygame.image.load("images/hook.png")
@@ -66,3 +66,4 @@ stage = 0
 last_fish_spawn_time = 0
 fishs = []
 pause = False
+limit = False

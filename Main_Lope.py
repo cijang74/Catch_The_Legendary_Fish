@@ -46,8 +46,7 @@ while running:
             stage = 1   
 
     pygame.display.update() # 루프 내에서 발생한 모든 이미지 변화를 업데이트
-    print(running)
 
 # pygame 종료
-pygame.time.delay(2000)
+pygame.time.delay(100)
 pygame.quit()

@@ -58,8 +58,7 @@ class Stages: # 스테이지 클래스
     def backgroundscreen(self, fishs, start_time, pressed_keys): # 게임 진행 배경
         global last_fish_spawn_time
         global pause
-
-
+        global limit
 
         # while (time.time() - start_time <= 10): # 인트로 띄워주기
         #         if time.time() - start_time <= 5 and time.time() - start_time >= 0:
@@ -73,6 +72,12 @@ class Stages: # 스테이지 클래스
         screen.blit(game_background_image, (self.x, self.y))
 
         boy.move(pressed_keys)
+        
+        if (boy.isHookDown == 1):
+            boy.downHook()
+        
+        if (boy.isHookUp == 1):
+            boy.upHook()
         boy.draw()
 
         if time.time() - last_fish_spawn_time > 0.5 and pause == False: # 물고기들 스폰
@@ -89,7 +94,20 @@ class Stages: # 스테이지 클래스
                 del fishs[i] # 물고기 삭제
                 i -= 1 # 삭제되면 i를 1 감소시킴으로서 또 다른 배드가이 생성
 
-            fishs[i].touching()
+            if fishs[i].y < boy.hook_y + 15 and boy.hook_y < fishs[i].y + 60 and fishs[i].x < boy.hook_x + 30 and boy.hook_x < fishs[i].x + 160 and limit == False:
+                fishs[i].isCatched = 1
+                limit = True
+
+            if fishs[i].isCatched == 1:
+                fishs[i].x = boy.hook_x - 150
+                fishs[i].y = boy.hook_y
+                fishs[i].isCatched = 1
+                
+            if(fishs[i].y == 250):
+                fishs[i].isCatched = 0
+                limit = False
+                del fishs[i]
+
 
             #elif fishs[i].touching(character):##추가
                 #character.hp -= 1##추가
