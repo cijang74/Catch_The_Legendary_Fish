@@ -16,7 +16,7 @@ background = pygame.image.load("images/배경.png")
 
 # 캐릭터 정보
 boy = pygame.image.load("images/Character.png")
-boy = pygame.transform.scale(boy, (140, 140))
+boy = pygame.transform.scale(boy, (140, 140)) # 이미지 스케일 변환
 
 boy_width = 140
 boy_height = 140

@@ -75,12 +75,12 @@ class Stages: # 스테이지 클래스
                 last_fish_spawn_time = time.time()
 
         i = 0
-        while i < len(fishs): #i가 현재 물고기의 개체수 보다 작을 때 동안 반복
+        while i < len(fishs): # i가 현재 물고기의 개체수 보다 작을 때 동안 반복
             if pause == False:
-                fishs[i].move()# 움직임
-            fishs[i].draw()# 그리기
+                fishs[i].move() # 움직임
+            fishs[i].draw() # 그리기
             
-            if fishs[i].off_screen(): #만약에 화면을 넘어가면
+            if fishs[i].off_screen(): # 만약에 화면을 넘어가면
                 del fishs[i] # 물고기 삭제
                 i -= 1 # 삭제되면 i를 1 감소시킴으로서 또 다른 배드가이 생성
 
@@ -89,6 +89,9 @@ class Stages: # 스테이지 클래스
                 #del fishs[i]##추가
                 #i -= 1##추가
             i += 1
+
+        boy.move()
+        boy.draw()
 
         Button(fish_book_button_image,1061,0,'book')
         Button(pause_button_image,1190,0,'pause')

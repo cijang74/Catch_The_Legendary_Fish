@@ -1,12 +1,25 @@
 # 라이브러리, 클래스 불러오기
 import pygame, random
 from Game_Sources import*
+from Game_Player import*
 
 class Fishs:
     def __init__(self):
         self.x = -200
         self.y =  random.randint(150, 600)
+        self.width = 70
+        self.height = 30
         self.rr = random.randint(1,2) # 물고기의 종류를 선택
+        self.isCatched = 0
+
+        ## 각 물고기 별 렉트 값 설정 ##
+        # 고등어 #
+        fish_mackerel_rect.left = self.x
+        fish_mackerel_rect.top = self.y
+
+        # 은갈치 #
+        fish_silverfish_rect.left = self.x
+        fish_silverfish_rect.top = self.y
 
     def move(self): # 물고기의 움직임
             if self.rr == 1:
@@ -39,6 +52,28 @@ class Fishs:
                 #del fishs[i]##추가
                 #i -= 1##추가
             i += 1
+
+    def touching(self): # 플레이어의 낚시 바늘 제어 / 낚시 바늘과 물고기의 충돌 여부
+        # 다 올렸을 때
+        if boy.hook_y < boy.boy_y + boy.boy_height :
+            if self.isCatched :
+                self.isCatched = 0
+                pygame.time.delay(500)
+            boy.hook_y = boy.boy_y + boy.boy_height
+            boy.hook_dy = 0
+            self.isHookUp = 1
+        
+        # 낚시바늘 올리기
+        elif boy.hook_y > screen_height - boy.hook_height - 50 or self.isCatched :
+            self.isHookDown = 0
+            if boy.hook_dy >= 0 :
+                boy.hook_dy -= boy.hook_speed
+
+        # 낚시바늘-물고기 충돌 체크
+        if hook_rect.colliderect(fish_mackerel_rect or fish_silverfish_rect) :
+            self.x = boy.hook_x + boy.hook_width / 2 - boy.hook_width / 2
+            self.y = boy.hook_y + boy.hook_height / 2 - boy.hook_height / 2
+            self.isCatched = 1
 
     #def touching(self, missile):
         #self.space_trach_rect = pygame.Rect(self.x, self.y, 80, 80) ##추가

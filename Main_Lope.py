@@ -47,4 +47,5 @@ while running:
     print(running)
 
 # pygame 종료
+pygame.time.delay(2000)
 pygame.quit()

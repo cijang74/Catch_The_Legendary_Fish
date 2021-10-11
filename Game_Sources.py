@@ -45,6 +45,15 @@ countinue_button_rect = countinue_button_image.get_rect() # 계속하기 버튼�
 game_end_button_image = pygame.image.load("images/Game_End_Button.png").convert() # 게임 종료 버튼 이미지
 game_end_button_rect = game_end_button_image.get_rect() # 게임 종료 버튼의 렉트값
 
+### 플레이어(소년) 관련 이미지 ###
+boy_image = pygame.image.load("images/Character.png")
+boy_image = pygame.transform.scale(boy_image, (140, 140)) # 이미지 스케일 변환
+
+### 낚시바늘 ###
+hook_image = pygame.image.load("images/hook.png")
+hook_image = pygame.transform.scale(hook_image, (15, 30))
+hook_rect = hook_image.get_rect()
+
 ### 물고기들 이미지 ###
 fish_mackerel_image = pygame.image.load("images/Fish_Mackerel.png").convert() # 고등어 이미지
 fish_mackerel_rect = fish_mackerel_image.get_rect() # 고등어의 렉트값
