@@ -9,7 +9,8 @@ class Fishs:
         self.y =  random.randint(300, 600)
         self.width = 70
         self.height = 30
-        self.rr = random.randint(1,2) # 물고기의 종류를 선택
+        self.rr = random.randint(1,100) # 물고기의 등장확률을 계산
+        self.type = None # self.rr을 바탕으로 종류를 선택
         self.isCatched = 0
 
         ## 각 물고기 별 렉트 값 설정 ##
@@ -21,12 +22,62 @@ class Fishs:
         fish_silverfish_rect.left = self.x
         fish_silverfish_rect.top = self.y
 
-    def move(self): # 물고기의 움직임
-            if self.rr == 1:
-                self.x += 1 # 만약에 고등어면 보통으로 움직임
+    def selcet(self):
+        ## 아래 물고기는 총 20%의 확률로 등장함
+        if 1 <= self.rr and self.rr <= 5:
+            self.type = "mackerel"
+        
+        elif 5 <= self.rr and self.rr <= 10:
+            self.type = "Snooze"
 
-            if self.rr == 2:
-                self.x += 3 # 만약에 은갈치면 존내 빠르게 움직임
+        elif 10 <= self.rr and self.rr <= 15:
+            self.type = "Cod"
+
+        elif 15 <= self.rr and self.rr <= 20:
+            self.type = "Silverfish"
+
+        ## 아래 물고기는 총 60%의 확률로 등장함
+        elif 20 <= self.rr and self.rr  <= 35:
+            self.type = "Bluegill"
+
+        elif 35 <= self.rr and self.rr  <= 50:
+            self.type = "Bass"
+
+        elif 50 <= self.rr and self.rr  <= 65:
+            self.type = "Bigmouse_Bass"
+
+        elif 65 <= self.rr and self.rr  <= 80:
+            self.type = "Piranha"
+
+        # elif 20 <= self.rr and self.rr  <= 35: //후에 추가
+        #     self.type = "Rainbow"
+
+    def move(self): # 물고기의 움직임
+
+        ## 아래 물고기는 20%의 확률로 등장함
+            if self.type == "mackerel":
+                self.x += 8 # 만약에 고등어면 보통으로 움직임
+
+            if self.type == "Snooze":
+                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+
+            if self.type == "Cod":
+                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+
+            if self.type == "Silverfish":
+                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+
+            if self.type == "Bluegill":
+                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+
+            if self.type == "Bass":
+                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+
+            if self.type == "Bigmouse_Bass":
+                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+
+            if self.type == "Piranha":
+                self.x += 1
              
     def draw(self):
         if self.rr == 1:

@@ -1,8 +1,8 @@
-a = 5
+aa = [0,0,0,0]
+hap = 0
 
-def test():
-    global a
-    a = 10
+for i in range(0,3):
+    aa[i] = int(input("%d번째 숫자:" %(i+1)))
+    hap += aa[i]
 
-test()
-print(a)
+print("합계: %d" %hap)
