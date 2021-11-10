@@ -22,68 +22,113 @@ class Fishs:
         fish_silverfish_rect.left = self.x
         fish_silverfish_rect.top = self.y
 
-    def selcet(self):
+    def selcet_type(self):
+
         ## 아래 물고기는 총 20%의 확률로 등장함
         if 1 <= self.rr and self.rr <= 5:
             self.type = "mackerel"
         
-        elif 5 <= self.rr and self.rr <= 10:
+        if 5 <= self.rr and self.rr <= 10:
             self.type = "Snooze"
 
-        elif 10 <= self.rr and self.rr <= 15:
+        if 10 <= self.rr and self.rr <= 15:
             self.type = "Cod"
 
-        elif 15 <= self.rr and self.rr <= 20:
+        if 15 <= self.rr and self.rr <= 20:
             self.type = "Silverfish"
 
         ## 아래 물고기는 총 60%의 확률로 등장함
-        elif 20 <= self.rr and self.rr  <= 35:
+        if 20 <= self.rr and self.rr  <= 35:
             self.type = "Bluegill"
 
-        elif 35 <= self.rr and self.rr  <= 50:
+        if 35 <= self.rr and self.rr  <= 50:
             self.type = "Bass"
 
-        elif 50 <= self.rr and self.rr  <= 65:
+        if 50 <= self.rr and self.rr  <= 65:
             self.type = "Bigmouse_Bass"
 
-        elif 65 <= self.rr and self.rr  <= 80:
+        if 65 <= self.rr and self.rr  <= 80:
             self.type = "Piranha"
 
-        # elif 20 <= self.rr and self.rr  <= 35: //후에 추가
+        ## 쓰레기 20%
+        if 80 <= self.rr and self.rr  <= 90:
+            self.type = "trash_can"
+
+        if 90 <= self.rr and self.rr  <= 100:
+            self.type = "trash_strow"
+
+
+        # elif 20 <= self.rr and self.rr  <= 35: // 무지개 물고기는 후에 추가
         #     self.type = "Rainbow"
 
     def move(self): # 물고기의 움직임
 
-        ## 아래 물고기는 20%의 확률로 등장함
+        ## 아래 물고기는 총 20%의 확률로 등장함
+
+        ## 너무 빠르게 하면 인덱스 빵꾸남 그래서 일단 임의로 줄여놓음~
             if self.type == "mackerel":
-                self.x += 8 # 만약에 고등어면 보통으로 움직임
+                self.x += 2 # 고등어 속도
 
             if self.type == "Snooze":
-                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+                self.x += 3 # 도루묵 속도
 
             if self.type == "Cod":
-                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+                self.x += 2 # 대구 속도
 
             if self.type == "Silverfish":
-                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+                self.x += 3 # 은갈치 속도
 
+        ## 아래 물고기는 총 60%의 확률로 등장함
             if self.type == "Bluegill":
-                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+                self.x += 1 # 블루길 속도
 
             if self.type == "Bass":
-                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+                self.x += 1 # 베스 속도
 
             if self.type == "Bigmouse_Bass":
-                self.x += 11 # 만약에 은갈치면 존내 빠르게 움직임
+                self.x += 2 # 큰입베스 속도
 
             if self.type == "Piranha":
-                self.x += 1
+                self.x += 3 # 피라냐 속도
+
+            if self.type == "trash_can":
+                self.x += 0.5
+
+            if self.type == "trash_strow":
+                self.x += 0.5
              
     def draw(self):
-        if self.rr == 1:
-            screen.blit(fish_mackerel_image, (self.x, self.y)) # 그리기
-        if self.rr == 2:
-            screen.blit(fish_silverfish_image, (self.x, self.y)) # 그리기
+
+        ## 타입별로 물고기 마다 다른 이미지를 그림
+        if self.type == "mackerel":
+            screen.blit(fish_mackerel_image, (self.x, self.y))
+
+        if self.type == "Snooze":
+            screen.blit(fish_snooze_image, (self.x, self.y))
+
+        if self.type == "Cod":
+            screen.blit(fish_cod_image, (self.x, self.y))
+
+        if self.type == "Silverfish":
+            screen.blit(fish_cod_image, (self.x, self.y))
+
+        if self.type == "Bluegill":
+            screen.blit(fish_bluegill_image, (self.x, self.y))
+
+        if self.type == "Bass":
+            screen.blit(fish_bass_image, (self.x, self.y))
+
+        if self.type == "Bigmouse_Bass":
+            screen.blit(fish_bigmouse_bass_image, (self.x, self.y))
+
+        if self.type == "Piranha":
+            screen.blit(fish_piranha_image, (self.x, self.y))
+
+        if self.type == "trash_can":
+            screen.blit(trash_can_image, (self.x, self.y))
+
+        if self.type == "trash_strow":
+            screen.blit(trash_strow_image, (self.x, self.y))
 
     def off_screen(self):
         return (self.x > 1800) # 화면을 넘어갔을 때 물고기 없앰

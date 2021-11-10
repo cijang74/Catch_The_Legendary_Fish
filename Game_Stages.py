@@ -80,12 +80,13 @@ class Stages: # 스테이지 클래스
             boy.upHook()
         boy.draw()
 
-        if time.time() - last_fish_spawn_time > 0.5 and pause == False: # 물고기들 스폰
+        if time.time() - last_fish_spawn_time > 0.2 and pause == False: # 물고기들 스폰
                 fishs.append(Fishs())
                 last_fish_spawn_time = time.time()
 
         i = 0
         while i < len(fishs): # i가 현재 물고기의 개체수 보다 작을 때 동안 반복
+            fishs[i].selcet_type()
             if pause == False:
                 fishs[i].move() # 움직임
             fishs[i].draw() # 그리기
