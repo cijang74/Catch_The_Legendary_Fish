@@ -7,7 +7,6 @@ class Boy:
         ## 소년 관련 초기값 ##
         self.boy_x = 100
         self.boy_y = 100
-        self.boy_dx = 0 # 원래 변수명: boy_x_change
         self.boy_speed = 1
 
         self.boy_image = boyR_stay_image
