@@ -5,6 +5,10 @@ from Game_Player import*
 
 class Fishs:
     def __init__(self):
+        # 쓰레기 이미지 회전 위한 것
+        self.trash_can_img = trash_can_image
+        self.trash_strow_img = trash_strow_image
+        
         self.x = -200
         self.y =  random.randint(300, 600)
         self.width = 70
@@ -93,9 +97,13 @@ class Fishs:
 
             if self.type == "trash_can":
                 self.x += 0.5
+                if self.x % 180 == 0 :
+                    self.trash_can_img = pygame.transform.rotate(self.trash_can_img, 90)
 
             if self.type == "trash_strow":
                 self.x += 0.5
+                if self.x % 180 == 0 :
+                    self.trash_strow_img = pygame.transform.rotate(self.trash_strow_img, 90)
              
     def draw(self):
 
@@ -125,10 +133,54 @@ class Fishs:
             screen.blit(fish_piranha_image, (self.x, self.y))
 
         if self.type == "trash_can":
-            screen.blit(trash_can_image, (self.x, self.y))
+            screen.blit(self.trash_can_img, (self.x, self.y))
 
         if self.type == "trash_strow":
-            screen.blit(trash_strow_image, (self.x, self.y))
+            screen.blit(self.trash_strow_img , (self.x, self.y))
+
+    def fish_catched(self):
+        # 도감 관련 전역 변수들 사용
+        global mackerel
+        global Snooze
+        global Cod
+        global Silverfish
+        global Bluegill
+        global Bass
+        global Bigmouse_Bass
+        global Piranha
+        global Rainbow
+
+        if self.isCatched == 1:
+            # 물고기들 종류별로 잡았다는 표시를 함
+            if self.type == "mackerel":
+                mackerel = True
+
+            if self.type == "Snooze":
+                Snooze = True
+
+            if self.type == "Cod":
+                Cod = True
+
+            if self.type == "Silverfish":
+                Silverfish = True
+
+            if self.type == "Bluegill":
+                Bluegill = True
+                print(Bluegill)
+
+            if self.type == "Bass":
+                Bass = True
+
+            if self.type == "Bigmouse_Bass":
+                Bigmouse_Bass = True
+
+            if self.type == "Piranha":
+                Piranha = True
+
+            if self.type == "Rainbow":
+                Rainbow = True
+
+        print(Bluegill)
 
     def off_screen(self):
         return (self.x > 1800) # 화면을 넘어갔을 때 물고기 없앰

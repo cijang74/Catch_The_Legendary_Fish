@@ -17,12 +17,11 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 home_screen_image = pygame.image.load("images/Home_Screen.png").convert() # 게임 메인 화면 이미지
 game_description_image = pygame.image.load("images/Game_Description.png").convert() # 게임 설명 화면 이미지
 game_background_image = pygame.image.load("images/Game_Background.png").convert() # 게임 진행중일 때 뒷 배경 이미지
-fish_book_image = pygame.image.load("images/Fish_Book_Screen.png").convert() # 물고기 도감 화면 이미지
 
 game_intro_1_image = pygame.image.load("images/Intro_1.png").convert() # 인트로 1 이미지
 game_intro_2_image = pygame.image.load("images/Intro_2.png").convert() # 인트로 2 이미지
 pause_screen_image = pygame.image.load("images/Pause_Screen.png").convert() # 일시정지 했을 때 뜨는 작은 화면
-pause_screen_image.set_colorkey((85, 56, 30)) #이거 논의 해봐야함 (눈의 흰색 하이라이트가 흰색 컬러키에 걸러지므로 바탕색을 검은색으로 하는게 좋아보임.)
+pause_screen_image.set_colorkey((85, 56, 30))
 
 start_button_image = pygame.image.load("images/Start_Button.png").convert() # 게임 시작 버튼 이미지
 start_button_rect = start_button_image.get_rect() # 게임 시작 버튼의 렉트값
@@ -44,6 +43,22 @@ countinue_button_rect = countinue_button_image.get_rect() # 계속하기 버튼�
 
 game_end_button_image = pygame.image.load("images/Game_End_Button.png").convert() # 게임 종료 버튼 이미지
 game_end_button_rect = game_end_button_image.get_rect() # 게임 종료 버튼의 렉트값
+
+### 도감에서 쓰여질 이미지 ###
+
+# 물고기 도감 화면 이미지
+fish_book_image = pygame.image.load("images/Fish_Book_Screen.png").convert()
+
+# 잠으면 도감 화면에 띄울 물고기들 이미지
+fish_book_mackerel_image = pygame.image.load("images/고등어_창_1.png").convert()
+fish_book_Snooze_image = pygame.image.load("images/도루묵_창_1.png").convert()
+fish_book_Cod_image = pygame.image.load("images/대구_창_1.png").convert()
+fish_book_Silverfish_image = pygame.image.load("images/갈치_창_1.png").convert()
+fish_book_Bluegill_image = pygame.image.load("images/블루길_창_1.png").convert()
+fish_book_Bass_image = pygame.image.load("images/배스_창_1.png").convert()
+fish_book_Bigmouse_Bass_image = pygame.image.load("images/큰입배스_창_1.png").convert()
+fish_book_Piranha_image = pygame.image.load("images/피라냐_창_1.png").convert()
+fish_book_Rainbow_image = pygame.image.load("images/무지개_창_1.png").convert()
 
 ### 플레이어(소년) 관련 이미지 ###
 boyR_stay_image = pygame.image.load("images/characterR_stay.png")
@@ -118,9 +133,22 @@ trash_strow_image.set_colorkey((255, 255, 255))
 trash_strow_image = pygame.transform.scale(trash_strow_image, (128, 72))
 trash_strow_rect = trash_strow_image.get_rect() # 쓰래기-빨대의 렉트값
 
+### 전역변수 ###
+
 # 게임 내 사용될 변수들
 stage = 0
 last_fish_spawn_time = 0
 fishs = []
 pause = False
 limit = False
+
+# 물고기 도감 관련해서 쓸 변수들
+mackerel = False
+Snooze = False
+Cod = False
+Silverfish = False
+Bluegill = False
+Bass = False
+Bigmouse_Bass = False
+Piranha = False
+Rainbow = False

@@ -52,13 +52,49 @@ class Stages: # 스테이지 클래스
         Button(start_button_image,780,520,'start')
 
     def fishbookscreen(self): # 물고기 도감화면
+
+        # 모든 물고기가 ??? 상태인 기본 그리드 그려주기
         screen.blit(fish_book_image, (self.x, self.y))
+
+        if Snooze == False:
+            screen.blit(fish_book_Snooze_image, (188, 58))
+
+        if Cod == False:
+            screen.blit(fish_book_Cod_image, (488, 58))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
         Button(return_button_image,0,574,'return')
 
     def backgroundscreen(self, fishs, start_time, pressed_keys): # 게임 진행 배경
         global last_fish_spawn_time
         global pause
         global limit
+        global mackerel
+        global Snooze
+        global Cod
+        global Silverfish
+        global Bluegill
+        global Bass
+        global Bigmouse_Bass
+        global Piranha
+        global Rainbow
 
         # while (time.time() - start_time <= 10): # 인트로 띄워주기
         #         if time.time() - start_time <= 5 and time.time() - start_time >= 0:
@@ -93,10 +129,40 @@ class Stages: # 스테이지 클래스
             
             if fishs[i].off_screen(): # 만약에 화면을 넘어가면
                 del fishs[i] # 물고기 삭제
-                i -= 1 # 삭제되면 i를 1 감소시킴으로서 또 다른 배드가이 생성
+                i -= 1 # 삭제되면 i를 1 감소시킴으로서 또 다른 물고기 생성
 
             if fishs[i].y < boy.hook_y + 15 and boy.hook_y < fishs[i].y + 60 and fishs[i].x < boy.hook_x + 30 and boy.hook_x < fishs[i].x + 160 and limit == False:
                 fishs[i].isCatched = 1
+                
+                # 물고기들 종류별로 잡았다는 표시를 함
+                if fishs[i].type == "mackerel":
+                    mackerel = True
+
+                if fishs[i].type == "Snooze":
+                    Snooze = True
+
+                if fishs[i].type == "Cod":
+                    Cod = True
+
+                if fishs[i].type == "Silverfish":
+                    Silverfish = True
+
+                if fishs[i].type == "Bluegill":
+                    Bluegill = True
+                    print(Bluegill)
+
+                if fishs[i].type == "Bass":
+                    Bass = True
+
+                if fishs[i].type == "Bigmouse_Bass":
+                    Bigmouse_Bass = True
+
+                if fishs[i].type == "Piranha":
+                    Piranha = True
+
+                if fishs[i].type == "Rainbow":
+                    Rainbow = True
+                
                 limit = True
 
             if fishs[i].isCatched == 1:
@@ -108,7 +174,6 @@ class Stages: # 스테이지 클래스
                 fishs[i].isCatched = 0
                 limit = False
                 del fishs[i]
-
 
             #elif fishs[i].touching(character):##추가
                 #character.hp -= 1##추가

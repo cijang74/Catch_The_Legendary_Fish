@@ -1,8 +1,13 @@
-aa = [0,0,0,0]
-hap = 0
+a = False
 
-for i in range(0,3):
-    aa[i] = int(input("%d번째 숫자:" %(i+1)))
-    hap += aa[i]
+def test():
+    global a
+    a = True
+test()
 
-print("합계: %d" %hap)
+def test2():
+    global a
+    if a == True:
+        print("정상입니다")
+
+test2()

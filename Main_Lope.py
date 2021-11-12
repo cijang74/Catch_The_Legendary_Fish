@@ -35,6 +35,7 @@ while running:
     if stage == 1: # 게임이 진행되는 스테이지 값: 1
         Map.backgroundscreen(fishs,start_time,pressed_keys)
         if pygame.mouse.get_pressed()[0] and fish_book_button_rect.collidepoint(pygame.mouse.get_pos()):
+            print(Bluegill)
             stage = 999
 
         if pygame.mouse.get_pressed()[0] and game_end_button_rect.collidepoint(pygame.mouse.get_pos()):
