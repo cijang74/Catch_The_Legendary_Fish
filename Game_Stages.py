@@ -35,6 +35,46 @@ class Button: # 버튼 클래스
             game_end_button_rect.left = x
             game_end_button_rect.top = y
 
+        elif type == 'close':
+            close_button_rect.left = x
+            close_button_rect.top = y
+
+        elif type == 'mackerel':
+            fish_book_button_mackerel_rect.left = x
+            fish_book_button_mackerel_rect.top = y
+
+        elif type == 'Snooze':
+            fish_book_button_Snooze_rect.left = x
+            fish_book_button_Snooze_rect.top = y
+
+        elif type == 'Cod':
+            fish_book_button_Cod_rect.left = x
+            fish_book_button_Cod_rect.top = y
+
+        elif type == 'Silverfish':
+            fish_book_button_Silverfish_rect.left = x
+            fish_book_button_Silverfish_rect.top = y
+
+        elif type == 'Bluegill':
+            fish_book_button_Bluegill_rect.left = x
+            fish_book_button_Bluegill_rect.top = y
+
+        elif type == 'Bass':
+            fish_book_button_Bass_rect.left = x
+            fish_book_button_Bass_rect.top = y
+
+        elif type == 'Bigmouse_Bass':
+            fish_book_button_Bigmouse_Bass_rect.left = x
+            fish_book_button_Bigmouse_Bass_rect.top = y
+
+        elif type == 'Piranha':
+            fish_book_button_Piranha_rect.left = x
+            fish_book_button_Piranha_rect.top = y
+
+        elif type == 'Rainbow':
+            fish_book_button_Rainbow_rect.left = x
+            fish_book_button_Rainbow_rect.top = y
+
         screen.blit(img_in,(x,y))
 
 class Stages: # 스테이지 클래스
@@ -56,6 +96,7 @@ class Stages: # 스테이지 클래스
         # 모든 물고기가 ??? 상태인 기본 그리드 그려주기
         screen.blit(fish_book_image, (self.x, self.y))
 
+        # 물고기가 잡힌것이 확인 되면 해당 물고기 이미지 띄워주기
         if Snooze == False:
             screen.blit(fish_book_Snooze_image, (188, 58))
 
@@ -80,7 +121,33 @@ class Stages: # 스테이지 클래스
         if Snooze == True:
             screen.blit(fish_book_Snooze_image, (185, 54))
 
-        Button(return_button_image,0,574,'return')
+        # 각 물고기 설명을 보여주는 버튼
+        if Snooze == False:
+            Button(fish_book_button_Snooze_image,240,214,'Snooze')
+
+        if Cod == False:
+            Button(fish_book_button_Cod_image,541,214,'Cod')
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        if Snooze == True:
+            screen.blit(fish_book_Snooze_image, (185, 54))
+
+        # 게임으로 돌아가는 버튼
+        Button(return_button_image,10,574,'return')
 
     def backgroundscreen(self, fishs, start_time, pressed_keys): # 게임 진행 배경
         global last_fish_spawn_time
@@ -95,17 +162,31 @@ class Stages: # 스테이지 클래스
         global Bigmouse_Bass
         global Piranha
         global Rainbow
+        global count_o
+        global count_s
 
-        # while (time.time() - start_time <= 10): # 인트로 띄워주기
-        #         if time.time() - start_time <= 5 and time.time() - start_time >= 0:
-        #             screen.blit(game_intro_1_image, (self.x,self.y))
+        # if count_o == 0:
+        #     pygame.mixer.music.load('sounds/오프닝.wav') #배경 음악
+        #     pygame.mixer.music.play(0)
+        #     while (time.time() - start_time <= 21): # 인트로 띄워주기
+        #             if time.time() - start_time <= 7 and time.time() - start_time >= 0:
+        #                 screen.blit(game_intro_1_image, (self.x,self.y))
 
-        #         if time.time() - start_time <= 10 and time.time() - start_time >= 5:
-        #             screen.blit(game_intro_2_image, (self.x, self.y))
+        #             if time.time() - start_time <= 14 and time.time() - start_time >= 7:
+        #                 screen.blit(game_intro_2_image, (self.x, self.y))
 
-        #         pygame.display.update()
+        #             if time.time() - start_time <= 21 and time.time() - start_time >= 14:
+        #                 screen.blit(game_intro_3_image, (self.x, self.y))
+        #                 count_o = 1
+
+        #             pygame.display.update()
         
         screen.blit(game_background_image, (self.x, self.y))
+
+        if count_s == 0:
+            stage_music = pygame.mixer.Sound('sounds/인게임.wav')
+            stage_music.play(-1) #음악 반복 재생
+        count_s += 1
 
         boy.move(pressed_keys)
         
@@ -185,6 +266,8 @@ class Stages: # 스테이지 클래스
         Button(pause_button_image,1190,0,'pause')
             
         if pygame.mouse.get_pressed()[0] and pause_button_rect.collidepoint(pygame.mouse.get_pos()):
+            pause_button_sound = pygame.mixer.Sound('sounds/버튼_일시정지.wav')
+            pause_button_sound.play(0) #음악 반복 재생
             pause = True
 
         if pause == True:
@@ -199,6 +282,8 @@ class Stages: # 스테이지 클래스
             Button(countinue_button_image,520,270,'countinue')
 
             if pygame.mouse.get_pressed()[0] and countinue_button_rect.collidepoint(pygame.mouse.get_pos()):
+                weak_button_sound = pygame.mixer.Sound('sounds/버튼_힘없음.wav')
+                weak_button_sound.play(0) #음악 반복 재생
                 pause = False
             
             Button(game_end_button_image,520,373,'end')

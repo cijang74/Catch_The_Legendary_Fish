@@ -20,6 +20,7 @@ game_background_image = pygame.image.load("images/Game_Background.png").convert(
 
 game_intro_1_image = pygame.image.load("images/Intro_1.png").convert() # 인트로 1 이미지
 game_intro_2_image = pygame.image.load("images/Intro_2.png").convert() # 인트로 2 이미지
+game_intro_3_image = pygame.image.load("images/Intro_3.png").convert() # 인트로 2 이미지
 pause_screen_image = pygame.image.load("images/Pause_Screen.png").convert() # 일시정지 했을 때 뜨는 작은 화면
 pause_screen_image.set_colorkey((85, 56, 30))
 
@@ -44,6 +45,9 @@ countinue_button_rect = countinue_button_image.get_rect() # 계속하기 버튼�
 game_end_button_image = pygame.image.load("images/Game_End_Button.png").convert() # 게임 종료 버튼 이미지
 game_end_button_rect = game_end_button_image.get_rect() # 게임 종료 버튼의 렉트값
 
+close_button_imgae = pygame.image.load("images/Close_Button.png").convert() # 게임 종료 버튼 이미지
+close_button_rect = close_button_imgae.get_rect() # 도감 창 끄는 버튼의 렉트값
+
 ### 도감에서 쓰여질 이미지 ###
 
 # 물고기 도감 화면 이미지
@@ -59,6 +63,39 @@ fish_book_Bass_image = pygame.image.load("images/배스_창_1.png").convert()
 fish_book_Bigmouse_Bass_image = pygame.image.load("images/큰입배스_창_1.png").convert()
 fish_book_Piranha_image = pygame.image.load("images/피라냐_창_1.png").convert()
 fish_book_Rainbow_image = pygame.image.load("images/무지개_창_1.png").convert()
+
+# 도감 물고기 버튼 이미지
+fish_book_button_mackerel_image = pygame.image.load("images/고등어_버튼.png").convert()
+fish_book_button_mackerel_rect = fish_book_button_mackerel_image.get_rect()
+
+fish_book_button_Snooze_image = pygame.image.load("images/도루묵_버튼.png").convert()
+fish_book_button_Snooze_rect = fish_book_button_Snooze_image.get_rect()
+
+fish_book_button_Cod_image = pygame.image.load("images/대구_버튼.png").convert()
+fish_book_button_Cod_rect = fish_book_button_Cod_image.get_rect()
+
+fish_book_button_Silverfish_image = pygame.image.load("images/갈치_버튼.png").convert()
+fish_book_button_Silverfish_rect = fish_book_button_Silverfish_image.get_rect()
+
+fish_book_button_Bluegill_image = pygame.image.load("images/블루길_버튼.png").convert()
+fish_book_button_Bluegill_rect = fish_book_button_Bluegill_image.get_rect()
+
+fish_book_button_Bass_image = pygame.image.load("images/배스_버튼.png").convert()
+fish_book_button_Bass_rect = fish_book_button_Bass_image.get_rect()
+
+fish_book_button_Bigmouse_Bass_image = pygame.image.load("images/큰입배스_버튼.png").convert()
+fish_book_button_Bigmouse_Bass_rect = fish_book_button_Bigmouse_Bass_image.get_rect()
+
+fish_book_button_Piranha_image = pygame.image.load("images/피라냐_버튼.png").convert()
+fish_book_button_Piranha_rect = fish_book_button_Piranha_image.get_rect()
+
+fish_book_button_Rainbow_image = pygame.image.load("images/무지개_버튼.png").convert()
+fish_book_button_Rainbow_rect = fish_book_button_Rainbow_image.get_rect()
+
+# 도감 물고기 설명 창 이미지
+fish_book_button_Snooze_discribe_image = pygame.image.load("images/물고기_설명.png").convert()
+fish_book_button_Cod_discribe_image = pygame.image.load("images/물고기_설명.png").convert()
+
 
 ### 플레이어(소년) 관련 이미지 ###
 boyR_stay_image = pygame.image.load("images/characterR_stay.png")
@@ -133,6 +170,22 @@ trash_strow_image.set_colorkey((255, 255, 255))
 trash_strow_image = pygame.transform.scale(trash_strow_image, (128, 72))
 trash_strow_rect = trash_strow_image.get_rect() # 쓰래기-빨대의 렉트값
 
+### 사운드 불러오기 ###
+# fishing_sound = pygame.mixer.Sound('sounds/낚싯대_첨벙.wav')
+
+# discribe_button_sound = pygame.mixer.Sound('sounds/버튼_게임 설명.wav')
+# start_button_sound = pygame.mixer.Sound('sounds/버튼_게임 스타트.wav')
+# normal_button_sound = pygame.mixer.Sound('sounds/버튼_대부분의 버튼.wav')
+# pause_button_sound = pygame.mixer.Sound('sounds/버튼_일시정지.wav')
+
+# normal_fanfare_sound = pygame.mixer.Sound('sounds/일반_빵빠레.mp3')
+# rainbow_fanfare_sound = pygame.mixer.Sound('sounds/무지개_빵빠레.wav')
+
+# stage_music = pygame.mixer.Sound('sounds/인게임.wav')
+# ending_music = pygame.mixer.Sound('sounds/엔딩.wav')
+# opening_music = pygame.mixer.Sound('sounds/오프닝.wav')
+# title_music = pygame.mixer.Sound('sounds/타이틀.mp3')
+
 ### 전역변수 ###
 
 # 게임 내 사용될 변수들
@@ -141,6 +194,11 @@ last_fish_spawn_time = 0
 fishs = []
 pause = False
 limit = False
+
+# 음악 관련 변수들
+count_o = 0
+count_s = 0
+count_t = 0
 
 # 물고기 도감 관련해서 쓸 변수들
 mackerel = False
@@ -152,3 +210,13 @@ Bass = False
 Bigmouse_Bass = False
 Piranha = False
 Rainbow = False
+
+mackerel_Book = False
+Snooze_Book = False
+Cod_Book = False
+Silverfish_Book = False
+Bluegill_Book = False
+Bass_Book = False
+Bigmouse_Bass_Book = False
+Piranha_Book = False
+Rainbow_Book = False

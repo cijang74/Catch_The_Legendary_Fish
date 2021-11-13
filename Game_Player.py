@@ -83,6 +83,9 @@ class Boy:
 
         elif pressed_keys[K_DOWN]:# and self.isHookUp :# 낚시바늘 내리기
             if(boy.hook_y == 250 - self.tmp_y): # - self.tmp_y 추가
+                
+                fishing_music = pygame.mixer.Sound('sounds/Rake_Swing_Whoosh_Close.wav')
+                fishing_music.play(0) #음악 반복 재생
                 self.downHook()
 
 
