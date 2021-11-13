@@ -175,7 +175,6 @@ class Stages: # 스테이지 클래스
         global count_o
         global count_s
 
-        """
         if count_o == 0:
             pygame.mixer.music.load('sounds/오프닝.wav') #배경 음악
             pygame.mixer.music.play(0)
@@ -191,7 +190,6 @@ class Stages: # 스테이지 클래스
                     count_o = 1
 
                 pygame.display.update()
-        """
         
         screen.blit(game_background_image, (self.x, self.y))
 
