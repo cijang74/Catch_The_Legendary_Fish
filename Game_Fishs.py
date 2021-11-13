@@ -182,6 +182,10 @@ class Fishs:
 
         print(Bluegill)
 
+    #def draw_you_catched(self):
+
+
+
     def off_screen(self):
         return (self.x > 1800) # 화면을 넘어갔을 때 물고기 없앰
 

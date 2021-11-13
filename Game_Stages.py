@@ -247,7 +247,7 @@ class Stages: # 스테이지 클래스
                 limit = True
 
             if fishs[i].isCatched == 1:
-                fishs[i].x = boy.hook_x - 150
+                fishs[i].x = boy.hook_x - 50
                 fishs[i].y = boy.hook_y
                 fishs[i].isCatched = 1
                 
@@ -266,9 +266,10 @@ class Stages: # 스테이지 클래스
         Button(pause_button_image,1190,0,'pause')
             
         if pygame.mouse.get_pressed()[0] and pause_button_rect.collidepoint(pygame.mouse.get_pos()):
-            pause_button_sound = pygame.mixer.Sound('sounds/버튼_일시정지.wav')
-            pause_button_sound.play(0) #음악 반복 재생
-            pause = True
+            if pause == False:
+                pause_button_sound = pygame.mixer.Sound('sounds/버튼_일시정지.wav')
+                pause_button_sound.play(0) #음악 반복 재생
+                pause = True
 
         if pause == True:
             #일시정지 하면 뒤에 배경 불투명한 검정색 칠하기#

@@ -55,8 +55,6 @@ while running:
             stage = 999
 
         if pygame.mouse.get_pressed()[0] and game_end_button_rect.collidepoint(pygame.mouse.get_pos()):
-            normal_button_sound = pygame.mixer.Sound('sounds/버튼_대부분의 버튼.wav')
-            normal_button_sound.play(0) #음악 반복 재생
             running = False # 이것도 논의. 종료 누르면 타이틀로 가게 할 건지? 아니면 바로 게임을 종료시킬 것인지.
             
     if stage == 999: # 도감 화면 스테이지 값: 2
