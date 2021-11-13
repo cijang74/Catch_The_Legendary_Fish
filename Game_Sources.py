@@ -96,7 +96,6 @@ fish_book_button_Rainbow_rect = fish_book_button_Rainbow_image.get_rect()
 fish_book_button_Snooze_discribe_image = pygame.image.load("images/물고기_설명.png").convert()
 fish_book_button_Cod_discribe_image = pygame.image.load("images/물고기_설명.png").convert()
 
-
 ### 플레이어(소년) 관련 이미지 ###
 boyR_stay_image = pygame.image.load("images/characterR_stay.png")
 boyL_stay_image = pygame.image.load("images/characterL_stay.png")
@@ -170,6 +169,17 @@ trash_strow_image.set_colorkey((255, 255, 255))
 trash_strow_image = pygame.transform.scale(trash_strow_image, (128, 72))
 trash_strow_rect = trash_strow_image.get_rect() # 쓰래기-빨대의 렉트값
 
+### 처음 잡았을 때 띄워지는 창 ###
+first_catch_mackerel_window_image = pygame.image.load("images/고등어_잡았다.png").convert()
+first_catch_Snooze_window_image = pygame.image.load("images/도루묵_잡았다.png").convert()
+first_catch_Cod_window_image = pygame.image.load("images/대구_잡았다.png").convert()
+first_catch_Silverfish_window_image = pygame.image.load("images/갈치_잡았다.png").convert()
+first_catch_Bluegill_window_image = pygame.image.load("images/블루길_잡았다.png").convert()
+first_catch_Bass_window_image = pygame.image.load("images/배스_잡았다.png").convert()
+first_catch_Bigmouse_Bass_window_image = pygame.image.load("images/큰입배스_잡았다.png").convert()
+first_catch_Piranha_window_image = pygame.image.load("images/피라냐_잡았다.png").convert()
+first_catch_Rainbow_window_image = pygame.image.load("images/무지개_잡았다.png").convert()
+
 ### 사운드 불러오기 ###
 # fishing_sound = pygame.mixer.Sound('sounds/낚싯대_첨벙.wav')
 
@@ -194,6 +204,7 @@ last_fish_spawn_time = 0
 fishs = []
 pause = False
 limit = False
+stop = 0
 
 # 음악 관련 변수들
 count_o = 0

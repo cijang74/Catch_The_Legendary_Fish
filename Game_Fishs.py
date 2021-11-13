@@ -154,6 +154,7 @@ class Fishs:
             # 물고기들 종류별로 잡았다는 표시를 함
             if self.type == "mackerel":
                 mackerel = True
+                
 
             if self.type == "Snooze":
                 Snooze = True
@@ -166,7 +167,6 @@ class Fishs:
 
             if self.type == "Bluegill":
                 Bluegill = True
-                print(Bluegill)
 
             if self.type == "Bass":
                 Bass = True
@@ -181,10 +181,6 @@ class Fishs:
                 Rainbow = True
 
         print(Bluegill)
-
-    #def draw_you_catched(self):
-
-
 
     def off_screen(self):
         return (self.x > 1800) # 화면을 넘어갔을 때 물고기 없앰
