@@ -75,6 +75,10 @@ class Button: # 버튼 클래스
             fish_book_button_Rainbow_rect.left = x
             fish_book_button_Rainbow_rect.top = y
 
+        elif type == 'ending':
+            game_ending_button_rect.left = x
+            game_ending_button_rect.top = y
+
         screen.blit(img_in,(x,y))
 
 class Stages: # 스테이지 클래스
@@ -89,7 +93,8 @@ class Stages: # 스테이지 클래스
         self.Bass_count = 0
         self.Bigmouse_Bass_count = 0
         self.Piranha_count = 0
-        self.Rainbow_count = 0
+        self.Rainbow_count = 1
+        self.stage_music = pygame.mixer.Sound('sounds/인게임.wav')
         
     def homescreen(self): # 게임 메인화면
         screen.blit(home_screen_image, (self.x, self.y))
@@ -99,6 +104,28 @@ class Stages: # 스테이지 클래스
     def descriptionscreen(self): # 게임 설명화면
         screen.blit(game_description_image, (self.x, self.y))
         Button(start_button_image,780,520,'start')
+
+    def endingscreen(self): # 엔딩화면
+        global count_e
+        self.stage_music.stop()
+        ending_start_time = time.time()
+
+        if count_e == 0:
+            pygame.mixer.music.load('sounds/엔딩.wav') #배경 음악
+            pygame.mixer.music.play(0)
+            while (time.time() - ending_start_time <= 21): # 인트로 띄워주기
+                if time.time() - ending_start_time <= 7 and time.time() - ending_start_time >= 0:
+                    screen.blit(game_ending_1_image, (self.x,self.y))
+
+                if time.time() - ending_start_time <= 14 and time.time() - ending_start_time >= 7:
+                    screen.blit(game_ending_2_image, (self.x, self.y))
+
+                if time.time() - ending_start_time <= 21 and time.time() - ending_start_time >= 14:
+                    screen.blit(game_ending_3_image, (self.x, self.y))
+                    count_e = 1
+
+                pygame.display.update()
+                pygame.time.delay(100)
 
     def fishbookscreen(self): # 물고기 도감화면
 
@@ -181,27 +208,26 @@ class Stages: # 스테이지 클래스
         global count_o
         global count_s
 
-        # if count_o == 0:
-        #     pygame.mixer.music.load('sounds/오프닝.wav') #배경 음악
-        #     pygame.mixer.music.play(0)
-        #     while (time.time() - start_time <= 21): # 인트로 띄워주기
-        #         if time.time() - start_time <= 7 and time.time() - start_time >= 0:
-        #             screen.blit(game_intro_1_image, (self.x,self.y))
+        if count_o == 0:
+            pygame.mixer.music.load('sounds/오프닝.wav') #배경 음악
+            pygame.mixer.music.play(0)
+            while (time.time() - start_time <= 21): # 인트로 띄워주기
+                if time.time() - start_time <= 7 and time.time() - start_time >= 0:
+                    screen.blit(game_intro_1_image, (self.x,self.y))
 
-        #         if time.time() - start_time <= 14 and time.time() - start_time >= 7:
-        #             screen.blit(game_intro_2_image, (self.x, self.y))
+                if time.time() - start_time <= 14 and time.time() - start_time >= 7:
+                    screen.blit(game_intro_2_image, (self.x, self.y))
 
-        #         if time.time() - start_time <= 21 and time.time() - start_time >= 14:
-        #             screen.blit(game_intro_3_image, (self.x, self.y))
-        #             count_o = 1
+                if time.time() - start_time <= 21 and time.time() - start_time >= 14:
+                    screen.blit(game_intro_3_image, (self.x, self.y))
+                    count_o = 1
 
-        #         pygame.display.update()
+                pygame.display.update()
         
         screen.blit(game_background_image, (self.x, self.y))
 
         if count_s == 0:
-            stage_music = pygame.mixer.Sound('sounds/인게임.wav')
-            stage_music.play(-1) #음악 반복 재생
+            self.stage_music.play(-1) #음악 반복 재생
         count_s += 1
 
         boy.move(pressed_keys)
@@ -313,7 +339,6 @@ class Stages: # 스테이지 클래스
                     while (time.time() - window_start_time <= 5):
                         screen.blit(first_catch_mackerel_window_image, (307, 35))
                         pygame.display.update()
-
 
                 if fishs[i].type == "Snooze" and self.Snooze_count == 1:
                     Snooze_fanfare_sound = pygame.mixer.Sound('sounds/도루묵_잡았다.wav')
@@ -431,3 +456,11 @@ class Stages: # 스테이지 클래스
                 pause = False
             
             Button(game_end_button_image,520,373,'end')
+
+    def Isending(self):
+        if self.Rainbow_count >= 1: # 무지개 물고기가 잡히면 엔딩 버튼 활성화
+            Button(game_ending_button_image,0,0,'ending')
+            pygame.display.update()
+            return True
+        else:
+            return False

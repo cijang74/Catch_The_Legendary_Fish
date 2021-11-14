@@ -21,6 +21,11 @@ game_background_image = pygame.image.load("images/Game_Background.png").convert(
 game_intro_1_image = pygame.image.load("images/Intro_1.png").convert() # 인트로 1 이미지
 game_intro_2_image = pygame.image.load("images/Intro_2.png").convert() # 인트로 2 이미지
 game_intro_3_image = pygame.image.load("images/Intro_3.png").convert() # 인트로 2 이미지
+
+game_ending_1_image = pygame.image.load("images/ending_1.png").convert() # 엔딩 1 이미지
+game_ending_2_image = pygame.image.load("images/ending_2.png").convert() # 엔딩 2 이미지
+game_ending_3_image = pygame.image.load("images/ending_3.png").convert() # 엔딩 2 이미지
+
 pause_screen_image = pygame.image.load("images/Pause_Screen.png").convert() # 일시정지 했을 때 뜨는 작은 화면
 pause_screen_image.set_colorkey((85, 56, 30))
 
@@ -47,6 +52,9 @@ game_end_button_rect = game_end_button_image.get_rect() # 게임 종료 버튼�
 
 close_button_imgae = pygame.image.load("images/Close_Button.png").convert() # 게임 종료 버튼 이미지
 close_button_rect = close_button_imgae.get_rect() # 도감 창 끄는 버튼의 렉트값
+
+game_ending_button_image = pygame.image.load("images/Ending_Button.png").convert() # 게임 종료 버튼 이미지
+game_ending_button_rect = game_ending_button_image.get_rect() # 도감 창 끄는 버튼의 렉트값
 
 ### 도감에서 쓰여질 이미지 ###
 
@@ -199,8 +207,10 @@ stop = 0
 
 # 음악 관련 변수들
 count_o = 0
+count_e = 0
 count_s = 0
 count_t = 0
+count_eb = 0
 
 # 물고기 도감 관련해서 쓸 변수들
 mackerel = False
