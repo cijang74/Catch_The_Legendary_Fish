@@ -51,7 +51,6 @@ while running:
         if pygame.mouse.get_pressed()[0] and fish_book_button_rect.collidepoint(pygame.mouse.get_pos()):
             normal_button_sound = pygame.mixer.Sound('sounds/버튼_대부분의 버튼.wav')
             normal_button_sound.play(0) #음악 반복 재생
-            print(Bluegill)
             stage = 999
 
         if pygame.mouse.get_pressed()[0] and game_end_button_rect.collidepoint(pygame.mouse.get_pos()):
@@ -67,20 +66,88 @@ while running:
             weak_button_sound = pygame.mixer.Sound('sounds/버튼_힘없음.wav')
             weak_button_sound.play(0) #음악 반복 재생
             stage = 1
+            mackerel_Book = False
             Snooze_Book = False
+            Cod_Book = False
+            Silverfish_Book = False
+            Bluegill_Book = False
+            Bass_Book = False
+            Bigmouse_Bass_Book = False
+            Piranha_Book = False
+            Rainbow_Book = False
 
         # 각 물고기 설명 버튼을 눌렀을 때
-
         if pygame.mouse.get_pressed()[0] and fish_book_button_Snooze_rect.collidepoint(pygame.mouse.get_pos()):
             Snooze_Book = True
-
         if Snooze_Book == True:
             screen.blit(fish_book_button_Snooze_discribe_image, (188, 58))
-
             Button(close_button_imgae,1058,58,'close')
-
         if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
             Snooze_Book = False
+
+        if pygame.mouse.get_pressed()[0] and fish_book_button_Cod_rect.collidepoint(pygame.mouse.get_pos()):
+            Cod_Book = True
+        if Cod_Book == True:
+            screen.blit(fish_book_button_Cod_discribe_image, (188, 58))
+            Button(close_button_imgae,1058,58,'close')
+        if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
+            Cod_Book = False
+
+        if pygame.mouse.get_pressed()[0] and fish_book_button_mackerel_rect.collidepoint(pygame.mouse.get_pos()):
+            mackerel_Book = True
+        if mackerel_Book == True:
+            screen.blit(fish_book_button_mackerel_discribe_image, (188, 58))
+            Button(close_button_imgae,1058,58,'close')
+        if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
+            mackerel_Book = False
+
+        if pygame.mouse.get_pressed()[0] and fish_book_button_Bluegill_rect.collidepoint(pygame.mouse.get_pos()):
+            Bluegill_Book = True
+        if Bluegill_Book == True:
+            screen.blit(fish_book_button_Bluegill_discribe_image, (188, 58))
+            Button(close_button_imgae,1058,58,'close')
+        if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
+            Bluegill_Book = False
+
+        if pygame.mouse.get_pressed()[0] and fish_book_button_Rainbow_rect.collidepoint(pygame.mouse.get_pos()):
+            Rainbow_Book = True
+        if Rainbow_Book == True:
+            screen.blit(fish_book_button_Rainbow_discribe_image, (188, 58))
+            Button(close_button_imgae,1058,58,'close')
+        if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
+            Rainbow_Book = False
+
+        if pygame.mouse.get_pressed()[0] and fish_book_button_Bass_rect.collidepoint(pygame.mouse.get_pos()):
+            Bass_Book = True
+        if Bass_Book == True:
+            screen.blit(fish_book_button_Bass_discribe_image, (188, 58))
+            Button(close_button_imgae,1058,58,'close')
+        if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
+            Bass_Book = False
+
+        if pygame.mouse.get_pressed()[0] and fish_book_button_Bigmouse_Bass_rect.collidepoint(pygame.mouse.get_pos()):
+            Bigmouse_Bass_Book = True
+        if Bigmouse_Bass_Book == True:
+            screen.blit(fish_book_button_Bigmouse_Bass_discribe_image, (188, 58))
+            Button(close_button_imgae,1058,58,'close')
+        if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
+            Bigmouse_Bass_Book = False
+
+        if pygame.mouse.get_pressed()[0] and fish_book_button_Silverfish_rect.collidepoint(pygame.mouse.get_pos()):
+            Silverfish_Book = True
+        if Silverfish_Book == True:
+            screen.blit(fish_book_button_Silverfish_discribe_image, (188, 58))
+            Button(close_button_imgae,1058,58,'close')
+        if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
+            Silverfish_Book = False
+
+        if pygame.mouse.get_pressed()[0] and fish_book_button_Piranha_rect.collidepoint(pygame.mouse.get_pos()):
+            Piranha_Book = True
+        if Piranha_Book == True:
+            screen.blit(fish_book_button_Piranha_discribe_image, (188, 58))
+            Button(close_button_imgae,1058,58,'close')
+        if pygame.mouse.get_pressed()[0] and close_button_rect.collidepoint(pygame.mouse.get_pos()):
+            Piranha_Book = False
 
     pygame.display.update() # 루프 내에서 발생한 모든 이미지 변화를 업데이트
 

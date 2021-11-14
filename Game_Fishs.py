@@ -13,7 +13,7 @@ class Fishs:
         self.y =  random.randint(300, 600)
         self.width = 70
         self.height = 30
-        self.rr = random.randint(1,100) # 물고기의 등장확률을 계산
+        self.rr = random.randint(1,105) # 물고기의 등장확률을 계산
         self.type = None # self.rr을 바탕으로 종류를 선택
         self.isCatched = 0
 
@@ -27,6 +27,14 @@ class Fishs:
         fish_silverfish_rect.top = self.y
 
     def selcet_type(self):
+        global mackerel
+        global Snooze
+        global Cod
+        global Silverfish
+        global Bluegill
+        global Bass
+        global Bigmouse_Bass
+        global Piranha
 
         ## 아래 물고기는 총 20%의 확률로 등장함
         if 1 <= self.rr and self.rr <= 5:
@@ -61,9 +69,9 @@ class Fishs:
         if 90 <= self.rr and self.rr  <= 100:
             self.type = "trash_strow"
 
-
-        # elif 20 <= self.rr and self.rr  <= 35: // 무지개 물고기는 후에 추가
-        #     self.type = "Rainbow"
+        ## 무지개 물고기
+        if 100 <= self.rr and self.rr  <= 105:
+            self.type = "Rainbow"
 
     def move(self): # 물고기의 움직임
 
@@ -104,6 +112,11 @@ class Fishs:
                 self.x += 0.5
                 if self.x % 180 == 0 :
                     self.trash_strow_img = pygame.transform.rotate(self.trash_strow_img, 90)
+
+            if self.type == "Rainbow":
+                self.x += 3
+
+        ## 무지개 물고기
              
     def draw(self):
 
@@ -118,7 +131,7 @@ class Fishs:
             screen.blit(fish_cod_image, (self.x, self.y))
 
         if self.type == "Silverfish":
-            screen.blit(fish_cod_image, (self.x, self.y))
+            screen.blit(fish_silverfish_image, (self.x, self.y))
 
         if self.type == "Bluegill":
             screen.blit(fish_bluegill_image, (self.x, self.y))
@@ -138,6 +151,9 @@ class Fishs:
         if self.type == "trash_strow":
             screen.blit(self.trash_strow_img , (self.x, self.y))
 
+        if self.type == "Rainbow":
+            screen.blit(fish_rainbow_image , (self.x, self.y))
+
     def fish_catched(self):
         # 도감 관련 전역 변수들 사용
         global mackerel
@@ -154,7 +170,6 @@ class Fishs:
             # 물고기들 종류별로 잡았다는 표시를 함
             if self.type == "mackerel":
                 mackerel = True
-                
 
             if self.type == "Snooze":
                 Snooze = True
@@ -180,10 +195,8 @@ class Fishs:
             if self.type == "Rainbow":
                 Rainbow = True
 
-        print(Bluegill)
-
     def off_screen(self):
-        return (self.x > 1800) # 화면을 넘어갔을 때 물고기 없앰
+        return (self.x > 1400) # 화면을 넘어갔을 때 물고기 없앰
 
     def make_fish(self):
         i = 0

@@ -64,6 +64,17 @@ fish_book_Bigmouse_Bass_image = pygame.image.load("images/큰입배스_창_1.png
 fish_book_Piranha_image = pygame.image.load("images/피라냐_창_1.png").convert()
 fish_book_Rainbow_image = pygame.image.load("images/무지개_창_1.png").convert()
 
+### 처음 잡았을 때 띄워지는 창 이미지 ###
+first_catch_mackerel_window_image = pygame.image.load("images/고등어_잡았다.png").convert()
+first_catch_Snooze_window_image = pygame.image.load("images/도루묵_잡았다.png").convert()
+first_catch_Cod_window_image = pygame.image.load("images/대구_잡았다.png").convert()
+first_catch_Silverfish_window_image = pygame.image.load("images/갈치_잡았다.png").convert()
+first_catch_Bluegill_window_image = pygame.image.load("images/블루길_잡았다.png").convert()
+first_catch_Bass_window_image = pygame.image.load("images/배스_잡았다.png").convert()
+first_catch_Bigmouse_Bass_window_image = pygame.image.load("images/큰입배스_잡았다.png").convert()
+first_catch_Piranha_window_image = pygame.image.load("images/피라냐_잡았다.png").convert()
+first_catch_Rainbow_window_image = pygame.image.load("images/무지개_잡았다.png").convert()
+
 # 도감 물고기 버튼 이미지
 fish_book_button_mackerel_image = pygame.image.load("images/고등어_버튼.png").convert()
 fish_book_button_mackerel_rect = fish_book_button_mackerel_image.get_rect()
@@ -93,8 +104,15 @@ fish_book_button_Rainbow_image = pygame.image.load("images/무지개_버튼.png"
 fish_book_button_Rainbow_rect = fish_book_button_Rainbow_image.get_rect()
 
 # 도감 물고기 설명 창 이미지
-fish_book_button_Snooze_discribe_image = pygame.image.load("images/물고기_설명.png").convert()
-fish_book_button_Cod_discribe_image = pygame.image.load("images/물고기_설명.png").convert()
+fish_book_button_mackerel_discribe_image = pygame.image.load("images/고등어_설명.png").convert()
+fish_book_button_Snooze_discribe_image = pygame.image.load("images/도루묵_설명.png").convert()
+fish_book_button_Cod_discribe_image = pygame.image.load("images/대구_설명.png").convert()
+fish_book_button_Silverfish_discribe_image = pygame.image.load("images/갈치_설명.png").convert()
+fish_book_button_Bluegill_discribe_image = pygame.image.load("images/블루길_설명.png").convert()
+fish_book_button_Bass_discribe_image = pygame.image.load("images/배스_설명.png").convert()
+fish_book_button_Bigmouse_Bass_discribe_image = pygame.image.load("images/큰입배스_설명.png").convert()
+fish_book_button_Piranha_discribe_image = pygame.image.load("images/피라냐_설명.png").convert()
+fish_book_button_Rainbow_discribe_image = pygame.image.load("images/무지개_설명.png").convert()
 
 ### 플레이어(소년) 관련 이미지 ###
 boyR_stay_image = pygame.image.load("images/characterR_stay.png")
@@ -168,33 +186,6 @@ trash_strow_image = pygame.image.load("images/Trash_Strow.png").convert() # 쓰�
 trash_strow_image.set_colorkey((255, 255, 255))
 trash_strow_image = pygame.transform.scale(trash_strow_image, (128, 72))
 trash_strow_rect = trash_strow_image.get_rect() # 쓰래기-빨대의 렉트값
-
-### 처음 잡았을 때 띄워지는 창 ###
-first_catch_mackerel_window_image = pygame.image.load("images/고등어_잡았다.png").convert()
-first_catch_Snooze_window_image = pygame.image.load("images/도루묵_잡았다.png").convert()
-first_catch_Cod_window_image = pygame.image.load("images/대구_잡았다.png").convert()
-first_catch_Silverfish_window_image = pygame.image.load("images/갈치_잡았다.png").convert()
-first_catch_Bluegill_window_image = pygame.image.load("images/블루길_잡았다.png").convert()
-first_catch_Bass_window_image = pygame.image.load("images/배스_잡았다.png").convert()
-first_catch_Bigmouse_Bass_window_image = pygame.image.load("images/큰입배스_잡았다.png").convert()
-first_catch_Piranha_window_image = pygame.image.load("images/피라냐_잡았다.png").convert()
-first_catch_Rainbow_window_image = pygame.image.load("images/무지개_잡았다.png").convert()
-
-### 사운드 불러오기 ###
-# fishing_sound = pygame.mixer.Sound('sounds/낚싯대_첨벙.wav')
-
-# discribe_button_sound = pygame.mixer.Sound('sounds/버튼_게임 설명.wav')
-# start_button_sound = pygame.mixer.Sound('sounds/버튼_게임 스타트.wav')
-# normal_button_sound = pygame.mixer.Sound('sounds/버튼_대부분의 버튼.wav')
-# pause_button_sound = pygame.mixer.Sound('sounds/버튼_일시정지.wav')
-
-# normal_fanfare_sound = pygame.mixer.Sound('sounds/일반_빵빠레.mp3')
-# rainbow_fanfare_sound = pygame.mixer.Sound('sounds/무지개_빵빠레.wav')
-
-# stage_music = pygame.mixer.Sound('sounds/인게임.wav')
-# ending_music = pygame.mixer.Sound('sounds/엔딩.wav')
-# opening_music = pygame.mixer.Sound('sounds/오프닝.wav')
-# title_music = pygame.mixer.Sound('sounds/타이틀.mp3')
 
 ### 전역변수 ###
 
