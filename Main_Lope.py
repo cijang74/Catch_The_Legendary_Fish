@@ -56,8 +56,7 @@ while running:
         if pygame.mouse.get_pressed()[0] and game_end_button_rect.collidepoint(pygame.mouse.get_pos()):
             running = False # 이것도 논의. 종료 누르면 타이틀로 가게 할 건지? 아니면 바로 게임을 종료시킬 것인지.
 
-        check = Map.Isending()
-        if check:
+        if Map.Isending():
             if pygame.mouse.get_pressed()[0] and game_ending_button_rect.collidepoint(pygame.mouse.get_pos()):
                 stage = 9999
 

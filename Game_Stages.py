@@ -93,7 +93,7 @@ class Stages: # 스테이지 클래스
         self.Bass_count = 0
         self.Bigmouse_Bass_count = 0
         self.Piranha_count = 0
-        self.Rainbow_count = 1
+        self.Rainbow_count = 0
         self.stage_music = pygame.mixer.Sound('sounds/인게임.wav')
         
     def homescreen(self): # 게임 메인화면
