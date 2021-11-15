@@ -47,7 +47,7 @@ while running:
             title_music.stop()
 
     if stage == 1: # 게임이 진행되는 스테이지 값: 1
-        Map.backgroundscreen(fish,pressed_keys)
+        Map.backgroundscreen(fish,start_time,pressed_keys)
         if pygame.mouse.get_pressed()[0] and fish_book_button_rect.collidepoint(pygame.mouse.get_pos()):
             normal_button_sound = pygame.mixer.Sound('sounds/버튼_대부분의 버튼.wav')
             normal_button_sound.play(0) #음악 반복 재생
