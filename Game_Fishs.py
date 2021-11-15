@@ -13,7 +13,7 @@ class Fish:
         self.y =  random.randint(300, 600)
         self.width = 70
         self.height = 30
-        self.rr = random.randint(1,105) # 물고기의 등장확률을 계산
+        self.rr = random.randint(1,104) # 물고기의 등장확률을 계산
         self.type = None # self.rr을 바탕으로 종류를 선택
         self.isCatched = 0
 
@@ -70,7 +70,7 @@ class Fish:
             self.type = "trash_strow"
 
         ## 무지개 물고기
-        if 100 <= self.rr and self.rr  <= 105:
+        if 100 <= self.rr and self.rr  <= 104:
             self.type = "Rainbow"
 
     def move(self): # 물고기의 움직임 #3이상이면 빨라짐.
@@ -104,12 +104,12 @@ class Fish:
                 self.x += 1.1 # 피라냐 속도 #초기 3
 
             if self.type == "trash_can":
-                self.x += 0.4  #초기 0.5
+                self.x += 0.5  #초기 0.5
                 if self.x % 180 == 0 :
                     self.trash_can_img = pygame.transform.rotate(self.trash_can_img, 90)
 
             if self.type == "trash_strow":
-                self.x += 0.3 #초기 0.5
+                self.x += 0.5 #초기 0.5
                 if self.x % 180 == 0 :
                     self.trash_strow_img = pygame.transform.rotate(self.trash_strow_img, 90)
 

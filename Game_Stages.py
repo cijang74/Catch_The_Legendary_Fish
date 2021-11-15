@@ -107,6 +107,7 @@ class Stages: # 스테이지 클래스
 
     def endingscreen(self): # 엔딩화면
         global count_e
+        global running
         self.stage_music.stop()
         ending_start_time = time.time()
 
@@ -125,7 +126,8 @@ class Stages: # 스테이지 클래스
                     count_e = 1
 
                 pygame.display.update()
-                pygame.time.delay(100)
+            pygame.time.delay(100)
+            running = False
 
     def fishbookscreen(self): # 물고기 도감화면
 
@@ -222,6 +224,7 @@ class Stages: # 스테이지 클래스
                     count_o = 1
 
                 pygame.display.update()
+            pygame.time.delay(100)
         
         screen.blit(game_background_image, (self.x, self.y))
 
@@ -303,24 +306,6 @@ class Stages: # 스테이지 클래스
                 fish[i].x = boy.hook_x - 50
                 fish[i].y = boy.hook_y
                 fish[i].isCatched = 1
-
-            ## 다른 물고기를 잡지 않았으면 무지개 물고기가 생성돼도 바로 삭제
-            if fish[i].type == "Rainbow":
-                if mackerel == False or Snooze == False:
-                    del fish[i]
-                    i -= 1
-
-                elif Cod == False or Bass == False:
-                    del fish[i]
-                    i -= 1
-                
-                elif Bigmouse_Bass == False or Bluegill == False:
-                    del fish[i]
-                    i -= 1
-                
-                elif Piranha == False or Silverfish == False:
-                    del fish[i]
-                    i -= 1
                 
             if(fish[i].y == 250):
                 ### 물고기 처음 잡았을 때 도감 띄워주는거 ###
@@ -417,7 +402,23 @@ class Stages: # 스테이지 클래스
                 fish[i].isCatched = 0
                 limit = False
                 del fish[i]
+            ## 다른 물고기를 잡지 않았으면 무지개 물고기가 생성돼도 바로 삭제
+            if fish[i].type == "Rainbow":
+                if mackerel == False or Snooze == False:
+                    del fish[i]
+                    i -= 1
 
+                elif Cod == False or Bass == False:
+                    del fish[i]
+                    i -= 1
+                
+                elif Bigmouse_Bass == False or Bluegill == False:
+                    del fish[i]
+                    i -= 1
+                
+                elif Piranha == False or Silverfish == False:
+                    del fish[i]
+                    i -= 1
             i += 1
 
         Button(fish_book_button_image,1061,0,'book')
@@ -449,8 +450,6 @@ class Stages: # 스테이지 클래스
 
     def Isending(self):
         if self.Rainbow_count >= 1: # 무지개 물고기가 잡히면 엔딩 버튼 활성화
-            Button(game_ending_button_image,0,0,'ending')
-            pygame.display.update()
             return True
         else:
             return False
