@@ -200,10 +200,9 @@ trash_strow_rect = trash_strow_image.get_rect() # 쓰래기-빨대의 렉트값
 # 게임 내 사용될 변수들
 stage = 0
 last_fish_spawn_time = 0
-fishs = []
+fish = []
 pause = False
 limit = False
-stop = 0
 
 # 음악 관련 변수들
 count_o = 0

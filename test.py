@@ -1,6 +1,5 @@
-import pygame,time
+import time
 
-a = True
+print(int(time.time()))
 
-if a:
-    print("test")
+print(time.time())

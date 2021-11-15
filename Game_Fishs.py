@@ -3,7 +3,7 @@ import pygame, random
 from Game_Sources import*
 from Game_Player import*
 
-class Fishs:
+class Fish:
     def __init__(self):
         # 쓰레기 이미지 회전 위한 것
         self.trash_can_img = trash_can_image
@@ -27,7 +27,7 @@ class Fishs:
         fish_silverfish_rect.top = self.y
 
     def selcet_type(self):
-        global mackerel
+        global mackerel #고등어
         global Snooze
         global Cod
         global Silverfish
@@ -36,21 +36,21 @@ class Fishs:
         global Bigmouse_Bass
         global Piranha
 
-        ## 아래 물고기는 총 20%의 확률로 등장함
-        if 1 <= self.rr and self.rr <= 5:
+        ## 아래 물고기는 총 20%의 확률로 등장함 #5차이
+        if 1 <= self.rr and self.rr <= 8:  #1<=5
             self.type = "mackerel"
         
-        if 5 <= self.rr and self.rr <= 10:
+        if 5 <= self.rr and self.rr <= 12: #5<=10
             self.type = "Snooze"
 
-        if 10 <= self.rr and self.rr <= 15:
+        if 10 <= self.rr and self.rr <= 17:
             self.type = "Cod"
 
-        if 15 <= self.rr and self.rr <= 20:
+        if 13 <= self.rr and self.rr <= 20:
             self.type = "Silverfish"
 
-        ## 아래 물고기는 총 60%의 확률로 등장함
-        if 20 <= self.rr and self.rr  <= 35:
+        ## 아래 물고기는 총 60%의 확률로 등장함 #15차이, 총 60
+        if 20 <= self.rr and self.rr  <= 35: #20<=35
             self.type = "Bluegill"
 
         if 35 <= self.rr and self.rr  <= 50:
@@ -62,7 +62,7 @@ class Fishs:
         if 65 <= self.rr and self.rr  <= 80:
             self.type = "Piranha"
 
-        ## 쓰레기 20%
+        ## 쓰레기 20% 
         if 80 <= self.rr and self.rr  <= 90:
             self.type = "trash_can"
 
@@ -73,48 +73,48 @@ class Fishs:
         if 100 <= self.rr and self.rr  <= 105:
             self.type = "Rainbow"
 
-    def move(self): # 물고기의 움직임
+    def move(self): # 물고기의 움직임 #3이상이면 빨라짐.
 
         ## 아래 물고기는 총 20%의 확률로 등장함
 
         ## 너무 빠르게 하면 인덱스 빵꾸남 그래서 일단 임의로 줄여놓음~
             if self.type == "mackerel":
-                self.x += 2 # 고등어 속도
+                self.x += 0.6 # 고등어 속도 #초기 2
 
             if self.type == "Snooze":
-                self.x += 3 # 도루묵 속도
+                self.x += 0.7 # 도루묵 속도 #초기 3
 
             if self.type == "Cod":
-                self.x += 2 # 대구 속도
+                self.x += 0.6 # 대구 속도 #초기 2
 
             if self.type == "Silverfish":
-                self.x += 3 # 은갈치 속도
+                self.x += 1.1 # 은갈치 속도 #초기 3
 
         ## 아래 물고기는 총 60%의 확률로 등장함
             if self.type == "Bluegill":
-                self.x += 1 # 블루길 속도
+                self.x += 0.5 # 블루길 속도 #초기 1
 
             if self.type == "Bass":
-                self.x += 1 # 베스 속도
+                self.x += 0.8 # 베스 속도 #초기 1
 
             if self.type == "Bigmouse_Bass":
-                self.x += 2 # 큰입베스 속도
+                self.x += 0.9 # 큰입베스 속도 #초기 2
 
             if self.type == "Piranha":
-                self.x += 3 # 피라냐 속도
+                self.x += 1.1 # 피라냐 속도 #초기 3
 
             if self.type == "trash_can":
-                self.x += 0.5
+                self.x += 0.4  #초기 0.5
                 if self.x % 180 == 0 :
                     self.trash_can_img = pygame.transform.rotate(self.trash_can_img, 90)
 
             if self.type == "trash_strow":
-                self.x += 0.5
+                self.x += 0.3 #초기 0.5
                 if self.x % 180 == 0 :
                     self.trash_strow_img = pygame.transform.rotate(self.trash_strow_img, 90)
 
             if self.type == "Rainbow":
-                self.x += 3
+                self.x += 1.3
 
         ## 무지개 물고기
              
@@ -200,17 +200,17 @@ class Fishs:
 
     def make_fish(self):
         i = 0
-        while i < len(fishs): #i가 현재 물고기의 개체수 보다 작을 때 동안 반복
-            fishs[i].move()# 움직임
-            fishs[i].draw()# 그리기
+        while i < len(fish): #i가 현재 물고기의 개체수 보다 작을 때 동안 반복
+            fish[i].move()# 움직임
+            fish[i].draw()# 그리기
             
-            if fishs[i].off_screen(): #만약에 화면을 넘어가면
-                del fishs[i] # 물고기 삭제
+            if fish[i].off_screen(): #만약에 화면을 넘어가면
+                del fish[i] # 물고기 삭제
                 i -= 1 # 삭제되면 i를 1 감소시킴으로서 또 다른 배드가이 생성
 
-            #elif fishs[i].touching(character):##추가
+            #elif fish[i].touching(character):##추가
                 #character.hp -= 1##추가
-                #del fishs[i]##추가
+                #del fish[i]##추가
                 #i -= 1##추가
             i += 1
 

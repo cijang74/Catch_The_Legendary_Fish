@@ -191,11 +191,10 @@ class Stages: # 스테이지 클래스
         # 게임으로 돌아가는 버튼
         Button(return_button_image,10,574,'return')
 
-    def backgroundscreen(self, fishs, start_time, pressed_keys): # 게임 진행 배경
+    def backgroundscreen(self, fishs, pressed_keys): # 게임 진행 배경
         global last_fish_spawn_time
         global pause
         global limit
-        global stop
         global mackerel
         global Snooze
         global Cod
@@ -208,6 +207,7 @@ class Stages: # 스테이지 클래스
         global count_o
         global count_s
 
+        """
         if count_o == 0:
             pygame.mixer.music.load('sounds/오프닝.wav') #배경 음악
             pygame.mixer.music.play(0)
@@ -223,6 +223,7 @@ class Stages: # 스테이지 클래스
                     count_o = 1
 
                 pygame.display.update()
+        """
         
         screen.blit(game_background_image, (self.x, self.y))
 
@@ -234,104 +235,98 @@ class Stages: # 스테이지 클래스
         
         if (boy.isHookDown == 1):
             boy.downHook()
-        
+
         if (boy.isHookUp == 1):
             boy.upHook()
+        
         boy.draw()
 
-        if time.time() - last_fish_spawn_time > 0.2 and pause == False: # 물고기들 스폰
-                fishs.append(Fishs())
+        if time.time() - last_fish_spawn_time > 0.5 and pause == False: # 물고기들 스폰
+                fishs.append(Fish())
                 last_fish_spawn_time = time.time()
 
         i = 0
         while i < len(fishs): # i가 현재 물고기의 개체수 보다 작을 때 동안 반복
-            fishs[i].selcet_type()
+            fish[i].selcet_type()
                             
             if pause == False:
-                fishs[i].move() # 움직임
-            fishs[i].draw() # 그리기
+                fish[i].move() # 움직임
+            fish[i].draw() # 그리기
             
-            if fishs[i].off_screen(): # 만약에 화면을 넘어가면
-                del fishs[i] # 물고기 삭제
+            if fish[i].off_screen(): # 만약에 화면을 넘어가면
+                del fish[i] # 물고기 삭제
                 i -= 1 # 삭제되면 i를 1 감소시킴으로서 또 다른 물고기 생성
 
-            ## 다른 물고기를 잡지 않았으면 무지개 물고기가 생성돼도 바로 삭제
-            if fishs[i].type == "Rainbow":
-                if mackerel == False or Snooze == False:
-                    del fishs[i]
-                    i -= 1
-
-                elif Cod == False or Bass == False:
-                    del fishs[i]
-                    i -= 1
-                
-                elif Bigmouse_Bass == False or Bluegill == False:
-                    del fishs[i]
-                    i -= 1
-                
-                elif Piranha == False or Silverfish == False:
-                    del fishs[i]
-                    i -= 1
-
-            if fishs[i].y < boy.hook_y + 15 and boy.hook_y < fishs[i].y + 60 and fishs[i].x < boy.hook_x + 30 and boy.hook_x < fishs[i].x + 160 and limit == False:
-                fishs[i].isCatched = 1
+            if fish[i].y < boy.hook_y + 15 and boy.hook_y < fish[i].y + 60 and fish[i].x < boy.hook_x + 30 and boy.hook_x < fish[i].x + 160 and limit == False:
+                fish[i].isCatched = 1
                 
                 # 물고기들 종류별로 잡았다는 표시를 함
-                if fishs[i].type == "mackerel":
+                if fish[i].type == "mackerel":
                     self.mackerel_count += 1
                     mackerel = True
 
-
-                if fishs[i].type == "Snooze":
+                if fish[i].type == "Snooze":
                     self.Snooze_count += 1
                     Snooze = True
                     
-
-                if fishs[i].type == "Cod":
+                if fish[i].type == "Cod":
                     self.Cod_count += 1
                     Cod = True
-                    
 
-                if fishs[i].type == "Silverfish":
+                if fish[i].type == "Silverfish":
                     self.Silverfish_count += 1
                     Silverfish = True
                     
-
-                if fishs[i].type == "Bluegill":
+                if fish[i].type == "Bluegill":
                     self.Bluegill_count += 1
                     Bluegill = True
                     
-
-                if fishs[i].type == "Bass":
+                if fish[i].type == "Bass":
                     self.Bass_count += 1
                     Bass = True
                     
-
-                if fishs[i].type == "Bigmouse_Bass":
+                if fish[i].type == "Bigmouse_Bass":
                     self.Bigmouse_Bass_count += 1
                     Bigmouse_Bass = True
                     
-
-                if fishs[i].type == "Piranha":
+                if fish[i].type == "Piranha":
                     self.Piranha_count += 1
                     Piranha = True
                     
-
-                if fishs[i].type == "Rainbow":
+                if fish[i].type == "Rainbow":
                     self.Rainbow_count += 1
                     Rainbow = True
                 
                 limit = True
 
-            if fishs[i].isCatched == 1:
-                fishs[i].x = boy.hook_x - 50
-                fishs[i].y = boy.hook_y
-                fishs[i].isCatched = 1
+            if fish[i].isCatched == 1:
+
+                fish[i].x = boy.hook_x - 50
+                fish[i].y = boy.hook_y
+                fish[i].isCatched = 1
+
+            ## 다른 물고기를 잡지 않았으면 무지개 물고기가 생성돼도 바로 삭제
+            if fish[i].type == "Rainbow":
+                if mackerel == False or Snooze == False:
+                    del fish[i]
+                    i -= 1
+
+                elif Cod == False or Bass == False:
+                    del fish[i]
+                    i -= 1
                 
-            if(fishs[i].y == 250):
+                elif Bigmouse_Bass == False or Bluegill == False:
+                    del fish[i]
+                    i -= 1
+                
+                elif Piranha == False or Silverfish == False:
+                    del fish[i]
+                    i -= 1
+                
+            if(fish[i].y == 250):
                 ### 물고기 처음 잡았을 때 도감 띄워주는거 ###
 
-                if fishs[i].type == "mackerel" and self.mackerel_count == 1:
+                if fish[i].type == "mackerel" and self.mackerel_count == 1:
                     mackerel_fanfare_sound = pygame.mixer.Sound('sounds/고등어_잡았다.wav')
                     mackerel_fanfare_sound.play(0) #음악 반복 재생
 
@@ -340,7 +335,7 @@ class Stages: # 스테이지 클래스
                         screen.blit(first_catch_mackerel_window_image, (307, 35))
                         pygame.display.update()
 
-                if fishs[i].type == "Snooze" and self.Snooze_count == 1:
+                if fish[i].type == "Snooze" and self.Snooze_count == 1:
                     Snooze_fanfare_sound = pygame.mixer.Sound('sounds/도루묵_잡았다.wav')
                     Snooze_fanfare_sound.play(0) #음악 반복 재생
 
@@ -350,7 +345,7 @@ class Stages: # 스테이지 클래스
                         pygame.display.update()
                     
 
-                if fishs[i].type == "Cod" and self.Cod_count == 1:
+                if fish[i].type == "Cod" and self.Cod_count == 1:
                     Cod_fanfare_sound = pygame.mixer.Sound('sounds/대구_잡았다.wav')
                     Cod_fanfare_sound.play(0) #음악 반복 재생
 
@@ -360,7 +355,7 @@ class Stages: # 스테이지 클래스
                         pygame.display.update()
                     
 
-                if fishs[i].type == "Silverfish" and self.Silverfish_count == 1:
+                if fish[i].type == "Silverfish" and self.Silverfish_count == 1:
                     Silverfish_fanfare_sound = pygame.mixer.Sound('sounds/갈치_잡았다.wav')
                     Silverfish_fanfare_sound.play(0) #음악 반복 재생
 
@@ -370,7 +365,7 @@ class Stages: # 스테이지 클래스
                         pygame.display.update()
                     
 
-                if fishs[i].type == "Bluegill" and self.Bluegill_count == 1:
+                if fish[i].type == "Bluegill" and self.Bluegill_count == 1:
                     Bluegill_fanfare_sound = pygame.mixer.Sound('sounds/블루길_잡았다.wav')
                     Bluegill_fanfare_sound.play(0) #음악 반복 재생
 
@@ -380,7 +375,7 @@ class Stages: # 스테이지 클래스
                         pygame.display.update()
                     
 
-                if fishs[i].type == "Bass" and self.Bass_count == 1:
+                if fish[i].type == "Bass" and self.Bass_count == 1:
                     Bass_fanfare_sound = pygame.mixer.Sound('sounds/배스_잡았다.wav')
                     Bass_fanfare_sound.play(0) #음악 반복 재생
 
@@ -390,7 +385,7 @@ class Stages: # 스테이지 클래스
                         pygame.display.update()
                     
 
-                if fishs[i].type == "Bigmouse_Bass" and self.Bigmouse_Bass_count == 1:
+                if fish[i].type == "Bigmouse_Bass" and self.Bigmouse_Bass_count == 1:
                     Bigmouse_Bass_fanfare_sound = pygame.mixer.Sound('sounds/큰입배스_잡았다.wav')
                     Bigmouse_Bass_fanfare_sound.play(0) #음악 반복 재생
 
@@ -400,7 +395,7 @@ class Stages: # 스테이지 클래스
                         pygame.display.update()
                     
 
-                if fishs[i].type == "Piranha" and self.Piranha_count == 1:
+                if fish[i].type == "Piranha" and self.Piranha_count == 1:
                     Piranha_fanfare_sound = pygame.mixer.Sound('sounds/피라냐_잡았다.wav')
                     Piranha_fanfare_sound.play(0) #음악 반복 재생
 
@@ -410,7 +405,7 @@ class Stages: # 스테이지 클래스
                         pygame.display.update()
                     
 
-                if fishs[i].type == "Rainbow" and self.Rainbow_count == 1:
+                if fish[i].type == "Rainbow" and self.Rainbow_count == 1:
                     rainbow_fanfare_sound = pygame.mixer.Sound('sounds/무지개_잡았다.wav')
                     rainbow_fanfare_sound.play(0) #음악 반복 재생
 
@@ -420,14 +415,10 @@ class Stages: # 스테이지 클래스
                         pygame.display.update()
                 
                 ### 창 띄워주고, 낚싯대가 다 올라갔으면 그 해당 물고기 삭제 ###
-                fishs[i].isCatched = 0
+                fish[i].isCatched = 0
                 limit = False
-                del fishs[i]
+                del fish[i]
 
-            #elif fishs[i].touching(character):##추가
-                #character.hp -= 1##추가
-                #del fishs[i]##추가
-                #i -= 1##추가
             i += 1
 
         Button(fish_book_button_image,1061,0,'book')
